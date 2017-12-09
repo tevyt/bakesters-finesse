@@ -11,8 +11,8 @@ script:
 
 after_deploy:
   - wget -q0- https://toolbelt.heroku.com/install.sh | sh
-  heroku run "POOL_SIZE=2 mix do ecto.create ecto.migrate" --app $HEROKU_APP_NAME
-  heroku ps:restart --app $HEROKU_APP_NAME
+  - heroku run "POOL_SIZE=2 mix do ecto.create ecto.migrate" --app $HEROKU_APP_NAME
+  - heroku ps:restart --app $HEROKU_APP_NAME
 
 deploy:
   provider: heroku

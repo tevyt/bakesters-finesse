@@ -1,13 +1,23 @@
+sudo: required
 language: elixir
-
 elixir:
-  - 1.5.2
-
+- 1.5.2
 addons:
-  - postgresql: '10.1'
-
+- postgresql: '10.1'
 services:
-  - postgresql
+- postgresql
+script:
+- mix test
 
-script: 
-  - mix test
+after_deploy:
+  - wget -q0- https://toolbelt.heroku.com/install.sh | sh
+  heroku run "POOL_SIZE=2 mix do ecto.create ecto.migrate" --app $HEROKU_APP_NAME
+  heroku ps:restart --app $HEROKU_APP_NAME
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: sUWvP++vZOC9x/JTsSjET+qud+dHGsVFktYalxn4vnX8PE3b1ktydBsmZtX5BRgIgjBhjsn92Tr3ynYvxBUZpoQpxGP7X5+IpJ1JuRllmIK18EwH+IB5bIT2cnwYStbdFLQNgYsO4uJkdYYcSRKY/ZZU3gIUz8dTbP3DbEGJoDn9zQXFX29OJdpGcEKdaUsPIcmVX9CjhEF44hPGDVDNPghgSDnDkSmQOThtS0vhVcQ7BhuYigwxo/w0NAtuMbYxpppKPzdr4K7iVI1pJ1U4IhN6W6bpOMrIESB5pWe2IWil7mNrNXQdTOnpojcZA990xeRdMi6Z1vPzs+C5yJ5QaQ1vtqKB/o88x1kPcCBxwGJy1BBYYu7OpKH3rPc7hBI/ucPuiwp2C7Kw5Hd/j62KeRwLDo+qqclUpN48r0MYnPPjifD7/N75TEGuvnAbuPXlKF1IQOdFCVYx+V3lVFqH+IGz0PJkx6v4r7MY/R626OgXHNS9ZYiYVZrJYUmnW2nRr4wILiaVHUAo4ibIQGDvzYJyZrwgsqbV3NXfa88ZkuIW2gFw/DXJ3zQVXVvtDoxoqn2GuTTqati+TEpQ2dA2RcST8Js8q+LM+tcw3ItFBIhlaSz61gO5Ybs7I47r6RzitLAEky5IUxX+SikbA3n/dPO0q4fz/vva/G4X2wY7whY=
+  app: bakesters-finesse
+  on:
+    branch: master

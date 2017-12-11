@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import images from '../../images';
 
 
-export default (props) => {
-  const Logo = styled.img`
+export const Logo = styled.img`
   width: 250px;
 `;
+
+export default (props) => {
   return (
     <div>
       <Logo src={images.bakestersLogo} />

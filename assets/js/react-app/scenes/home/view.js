@@ -1,7 +1,8 @@
 import React from 'react';
+import Header from '../../components/header';
 
 export default (props) => {
   return (
-    <h1>Bakester's Finesse</h1>
+    <Header />
   );
 };

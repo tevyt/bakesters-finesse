@@ -3,7 +3,14 @@
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin"
+    "watch": "brunch watch --stdin",
+    "test": "node_modules/mocha/bin/mocha --require js/test_helpers/index.js 'js/**/*.spec.js'",
+    "test:watch": "npm test -- --watch"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",

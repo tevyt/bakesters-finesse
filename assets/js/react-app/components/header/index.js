@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import images from '../../images';
 
-
-export const Logo = styled.img`
+const Logo = styled.img`
   width: 250px;
 `;
 

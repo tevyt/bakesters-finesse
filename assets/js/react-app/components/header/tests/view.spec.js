@@ -13,6 +13,8 @@ describe('Header', () => {
   it('contains a logo', () => {
     expect(wrapper.find('img')).to.have.lengthOf(1);
   });
-  it('contains social media links');
+  it('contains social media links', () => {
+    expect(wrapper.find('svg')).to.have.lengthOf(2);
+  });
   it('contains the bakery location');
 });

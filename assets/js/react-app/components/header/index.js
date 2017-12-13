@@ -6,16 +6,21 @@ import providers from '../social-media-link/providers';
 
 const Logo = styled.img`
   width: 250px;
+  height: 250px;
+`;
+
+const Container = styled.div`
+  display: flex
 `;
 
 export default (props) => {
   return (
-    <div>
+    <Container>
       <Logo src={images.bakestersLogo} />
       <div>
         <SocialMediaLink provider={providers.instagram} profile='' />
         <SocialMediaLink provider={providers.facebook} profile='' />
       </div>
-    </div>
+    </Container>
   );
 }

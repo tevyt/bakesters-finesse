@@ -11,7 +11,7 @@ describe('social-media-link', () => {
     expect(shallow(<SocialMediaLink profile='' provider='' />)).to.be.ok;
   });
   it('links to a social media page', () => {
-    const wrapper = shallow(<SocialMediaLink profile={profile} provider='' />);
+    const wrapper = mount(<SocialMediaLink profile={profile} provider='' />);
     expect(wrapper.find('a').first().prop('href')).to.equal(profile);
   });
   describe('Social media providers', () => {

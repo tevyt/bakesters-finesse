@@ -37,6 +37,7 @@ export default (props) => {
     background-color: ${colors.green};
     border-radius: 100%;
     outline: 0;
+    margin: 5px;
     &:active{
       outline: 0;
       -moz-outline-style: none;

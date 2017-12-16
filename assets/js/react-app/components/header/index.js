@@ -29,8 +29,8 @@ export default (props) => {
     <Container>
       <Logo src={images.bakestersLogo} />
       <SocialMediaLinks>
-        <SocialMediaLink provider={providers.instagram} profile='' />
-        <SocialMediaLink provider={providers.facebook} profile='' />
+        <SocialMediaLink provider={providers.instagram} profile='https://www.instagram.com/bakestersfinesse/' />
+        <SocialMediaLink provider={providers.facebook} profile='https://www.facebook.com/Bakestersfinesse/' />
         <SocialMediaLink provider={providers.email} profile='' />
       </SocialMediaLinks>
     </Container>

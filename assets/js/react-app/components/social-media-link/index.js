@@ -53,7 +53,7 @@ export default (props) => {
   `;
 
   return (
-    <SocialMediaLink href={profile}>
+    <SocialMediaLink href={profile} target="_blank">
       <FontAwesomeIcon icon={getProviderIcon(provider)} />
     </SocialMediaLink>
   );

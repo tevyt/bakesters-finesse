@@ -31,5 +31,9 @@ describe('social-media-link', () => {
       const wrapper = mount(<SocialMediaLink profile={profile} provider={providers.twitter} />);
       expect(wrapper.find('svg').hasClass("fa-twitter")).to.be.true;
     });
+    it('renders an icon for Email', () => {
+      const wrapper = mount(<SocialMediaLink profile={profile} provider={providers.email} />);
+      expect(wrapper.find('svg').hasClass("fa-envelope")).to.be.true;
+    });
   });
 });

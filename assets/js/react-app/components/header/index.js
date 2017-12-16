@@ -31,7 +31,7 @@ export default (props) => {
       <SocialMediaLinks>
         <SocialMediaLink provider={providers.instagram} profile='' />
         <SocialMediaLink provider={providers.facebook} profile='' />
-        <SocialMediaLink provider={providers.pinterest} profile='' />
+        <SocialMediaLink provider={providers.email} profile='' />
       </SocialMediaLinks>
     </Container>
   );

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import providers from './providers';
 import colors from '../../styles/colors';
-import { faInstagram, faFacebook, faPinterest, faTwitter } from '@fortawesome/fontawesome-free-brands';
+import { faInstagram, faFacebook, faTwitter, faPinterest } from '@fortawesome/fontawesome-free-brands';
+import { faEnvelope } from '@fortawesome/fontawesome-free-solid';
 
 const getProviderIcon = (provider) => {
   switch(provider){
@@ -15,6 +16,8 @@ const getProviderIcon = (provider) => {
       return faPinterest;
     case providers.twitter:
       return faTwitter;
+    case providers.email:
+      return faEnvelope;
     default: 
       return null;
   }

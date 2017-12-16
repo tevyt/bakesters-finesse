@@ -14,7 +14,7 @@ describe('Header', () => {
     expect(wrapper.find('img')).to.have.lengthOf(1);
   });
   it('contains social media links', () => {
-    expect(wrapper.find('svg')).to.have.lengthOf(2);
+    expect(wrapper.find('svg')).to.have.lengthOf(3);
   });
   it('contains the bakery location');
 });

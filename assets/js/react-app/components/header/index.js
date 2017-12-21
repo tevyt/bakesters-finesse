@@ -4,6 +4,7 @@ import images from '../../images';
 import SocialMediaLink from '../social-media-link';
 import providers from '../social-media-link/providers';
 import media from '../../styles/media';
+import colors from '../../styles/colors';
 
 const Logo = styled.img`
   width: 175px;
@@ -30,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-const SocialMediaLinks = styled.div`
+const Links = styled.div`
   position: absolute;
   top: 0;
   right: 0;
@@ -43,15 +44,27 @@ const SocialMediaLinks = styled.div`
   `}
 `;
 
+const Location = styled.div`
+  color: ${colors.green}
+`;
+
+const SocialMediaLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export default (props) => {
   return (
     <Container>
       <Logo src={images.bakestersLogo} />
-      <SocialMediaLinks>
-        <SocialMediaLink provider={providers.instagram} profile='https://www.instagram.com/bakestersfinesse/' />
-        <SocialMediaLink provider={providers.facebook} profile='https://www.facebook.com/Bakestersfinesse/' />
-        <SocialMediaLink provider={providers.email} profile='' />
-      </SocialMediaLinks>
+      <Links>
+        <Location id='bakery-location'>Ward Avenue, Mandeville Jamaica</Location>
+        <SocialMediaLinks>
+          <SocialMediaLink provider={providers.instagram} profile='https://www.instagram.com/bakestersfinesse/' />
+          <SocialMediaLink provider={providers.facebook} profile='https://www.facebook.com/Bakestersfinesse/' />
+          <SocialMediaLink provider={providers.email} profile='' />
+        </SocialMediaLinks>
+      </Links>
     </Container>
   );
 }

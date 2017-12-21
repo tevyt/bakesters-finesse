@@ -16,5 +16,7 @@ describe('Header', () => {
   it('contains social media links', () => {
     expect(wrapper.find('svg')).to.have.lengthOf(3);
   });
-  it('contains the bakery location');
+  it('contains the bakery location', () => {
+    expect(wrapper.find('#bakery-location')).to.exist;
+  });
 });

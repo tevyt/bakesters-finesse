@@ -31,7 +31,6 @@ export default (props) => {
 
   const SocialMediaLink = styled.a`
     display: inline-block;
-    font-size: 1.2em;
     width: 35px;
     height: 35px;
     line-height: 35px;

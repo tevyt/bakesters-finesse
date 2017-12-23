@@ -29,6 +29,8 @@ const Container = styled.div`
     `};
 `;
 
+const MenuLinks = styled.nav``;
+
 const Links = styled.div`
   position: absolute;
   top: 0;

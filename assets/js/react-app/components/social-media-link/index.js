@@ -1,14 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import providers from './providers';
-import colors from '../../styles/colors';
-import { faInstagram, faFacebook, faTwitter, faPinterest } from '@fortawesome/fontawesome-free-brands';
-import { faEnvelope } from '@fortawesome/fontawesome-free-solid';
+import React from "react";
+import styled from "styled-components";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import providers from "./providers";
+import colors from "../../styles/colors";
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faPinterest
+} from "@fortawesome/fontawesome-free-brands";
+import { faEnvelope } from "@fortawesome/fontawesome-free-solid";
 
-const getProviderIcon = (provider) => {
-  switch(provider){
-    case providers.instagram: 
+const getProviderIcon = provider => {
+  switch (provider) {
+    case providers.instagram:
       return faInstagram;
     case providers.facebook:
       return faFacebook;
@@ -18,16 +23,13 @@ const getProviderIcon = (provider) => {
       return faTwitter;
     case providers.email:
       return faEnvelope;
-    default: 
+    default:
       return null;
   }
-}; 
+};
 
-export default (props) => {
-  const {
-    provider, 
-    profile
-  } = props;
+export default props => {
+  const { provider, profile } = props;
 
   const SocialMediaLink = styled.a`
     display: inline-block;
@@ -39,9 +41,9 @@ export default (props) => {
     background-color: ${colors.green};
     border-radius: 100%;
     margin: 5px;
-    &:hover{
+    &:hover {
       color: ${colors.white};
-      background-color: ${colors.lightGreen}
+      background-color: ${colors.lightGreen};
     }
   `;
 

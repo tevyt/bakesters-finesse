@@ -7,7 +7,7 @@
     <meta name="description" content="Vegan pastry is our specialty">
     <meta name="author" content="Travis Smith">
 
-    <title>Hello Bakesters!</title>
+    <title>Bakester's Finesse</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
   </head>

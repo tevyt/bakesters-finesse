@@ -8,6 +8,7 @@ services:
 - postgresql
 script:
 - mix test
+- cd assets && npm install && npm test
 
 after_deploy:
   - wget -q0- https://toolbelt.heroku.com/install.sh | sh

@@ -5,8 +5,7 @@
     "deploy": "brunch build --production",
     "watch": "brunch watch --stdin",
     "test": "nyc node_modules/mocha/bin/mocha --require js/test_helpers/index.js 'js/**/*.spec.js'",
-    "test:watch": "npm test -- --watch",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test:watch": "npm test -- --watch"
   },
   "babel": {
     "presets": [
@@ -37,7 +36,6 @@
     "brunch": "2.10.9",
     "chai": "^4.1.2",
     "clean-css-brunch": "2.10.0",
-    "coveralls": "^3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "jsdom": "^11.5.1",

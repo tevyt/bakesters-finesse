@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import images from "../../images";
-import SocialMediaLink from "../social-media-link";
 import providers from "../social-media-link/providers";
 import media from "../../styles/media";
 import colors from "../../styles/colors";
+import SocialMediaLink from "../social-media-link";
+import NavBar, { NavLink } from "../navbar";
 
 const Logo = styled.img`
   width: 175px;
@@ -13,7 +14,9 @@ const Logo = styled.img`
   position: absoloute;
   left: 0;
   top: 0;
-  ${media.handheld`
+  ${media.desktop`
+    margin: 20px;
+  `} ${media.handheld`
     display: block;
     position: relative;
     margin: auto;
@@ -56,11 +59,26 @@ const SocialMediaLinks = styled.div`
   padding-bottom: 10px;
 `;
 
+const Nav = styled.div`
+  ${media.desktop`
+    display: flex;
+    padding: 50px;
+    align-items: center;
+  `};
+`;
+
 export default props => {
   const bakeryLocation = "https://goo.gl/maps/MG3Ct1nUo3P2";
   return (
     <Container>
-      <Logo src={images.bakestersLogo} />
+      <Nav>
+        <Logo src={images.bakestersLogo} />
+        <NavBar>
+          <NavLink text="Gallery" href="" />
+          <NavLink text="About" href="" />
+          <NavLink text="Contact" href="" />
+        </NavBar>
+      </Nav>
       <Links>
         <Location id="bakery-location" href={bakeryLocation} target="_blank">
           Ward Avenue, Mandeville Jamaica

@@ -14,6 +14,31 @@ const NavList = styled.ul`
     `};
 `;
 
+const NavListItem = styled.li`
+  display: inline;
+  padding: 5px;
+`;
+
+const Link = styled.a`
+  color: ${color.red};
+  &:hover {
+    color: ${color.green};
+  }
+`;
+
+const Hamburger = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  span {
+    background-color: ${color.red};
+    display: block;
+    height: 2px;
+    width: 15px;
+    margin: 2px;
+  }
+`;
+
 const NavMenuDiv = styled.div`
   ${media.desktop`
     display: none;
@@ -30,18 +55,6 @@ const NavMenuDiv = styled.div`
   `};
 `;
 
-const NavListItem = styled.li`
-  display: inline;
-  padding: 5px;
-`;
-
-const Link = styled.a`
-  color: ${color.red};
-  &:hover {
-    color: ${color.green};
-  }
-`;
-
 export const NavLink = props => {
   const { text, href } = props;
   return (
@@ -52,7 +65,16 @@ export const NavLink = props => {
 };
 
 export const NavMenu = props => {
-  return <NavMenuDiv>Menu</NavMenuDiv>;
+  return (
+    <NavMenuDiv>
+      MENU
+      <Hamburger>
+        <span />
+        <span />
+        <span />
+      </Hamburger>
+    </NavMenuDiv>
+  );
 };
 
 export default props => {

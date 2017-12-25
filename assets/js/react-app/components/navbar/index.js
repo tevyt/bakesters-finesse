@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import color from "../../styles/colors";
 import media from "../../styles/media";
+import images from "../../images";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { faWindowClose } from "@fortawesome/fontawesome-free-solid";
 
 const NavList = styled.ul`
   ${media.desktop`
@@ -64,6 +67,56 @@ export const NavLink = props => {
   );
 };
 
+export const NavFullMenu = props => {
+  const NavFullDiv = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: ${color.white};
+    color: ${color.red};
+    top: 0;
+    left: 0;
+    z-index: 10;
+  `;
+
+  const CloseButton = styled.div`
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  `;
+
+  const Logo = styled.img`
+    display: block;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+  `;
+
+  const MenuList = styled.ul`
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    li {
+      display: block !important;
+      font-size: 1.5em;
+    }
+  `;
+
+  return (
+    <NavFullDiv id="nav-menu">
+      <CloseButton onClick={props.onMenuClick}>
+        <FontAwesomeIcon icon={faWindowClose} />
+      </CloseButton>
+      <Logo src={images.bakestersLogo} />
+      <MenuList>
+        {props.children.map(link => {
+          return link;
+        })}
+      </MenuList>
+    </NavFullDiv>
+  );
+};
 export const NavMenu = props => {
   return (
     <NavMenuDiv>
@@ -73,7 +126,7 @@ export const NavMenu = props => {
         <span />
         <span />
       </Hamburger>
-      {props.showMenu ? <div id="nav-menu">FULL MENU</div> : null}
+      {props.showMenu ? <NavFullMenu {...props} /> : null}
     </NavMenuDiv>
   );
 };

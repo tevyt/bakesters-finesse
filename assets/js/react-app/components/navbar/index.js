@@ -105,7 +105,7 @@ export const NavFullMenu = props => {
 
   return (
     <NavFullDiv id="nav-menu">
-      <CloseButton onClick={props.onMenuClick}>
+      <CloseButton id="nav-close-button" onClick={props.onMenuClick}>
         <FontAwesomeIcon icon={faWindowClose} />
       </CloseButton>
       <Logo src={images.bakestersLogo} />

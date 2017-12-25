@@ -49,19 +49,6 @@ describe("NavBar", () => {
     expect(onMenuClick.called).to.be.true;
   });
 
-  it("renders the full menu when showMenu prop is true", () => {
-    const navBar = (
-      <NavBar showMenu={true}>
-        <NavLink>Test 1</NavLink>
-        <NavLink>Test 2</NavLink>
-        <NavLink>Test 3</NavLink>
-      </NavBar>
-    );
-
-    const wrapper = mount(navBar);
-    expect(wrapper.find("#nav-menu")).to.have.lengthOf(1);
-  });
-
   it("does not render the full menu if showMenu is false", () => {
     const navBar = (
       <NavBar showMenu={false}>
@@ -83,6 +70,53 @@ describe("NavBar", () => {
       const wrapper = mount(navLink).find("a");
       expect(wrapper.text()).to.equal("Text");
       expect(wrapper.prop("href")).to.equal("Href");
+    });
+  });
+
+  describe("Full Menu", () => {
+    it("renders the full menu when showMenu prop is true", () => {
+      const navBar = (
+        <NavBar showMenu={true}>
+          <NavLink>Test 1</NavLink>
+          <NavLink>Test 2</NavLink>
+          <NavLink>Test 3</NavLink>
+        </NavBar>
+      );
+
+      const wrapper = mount(navBar);
+      expect(wrapper.find("#nav-menu").length).to.be.greaterThan(0);
+    });
+
+    describe("close-button", () => {
+      it("renders with the full menu", () => {
+        const navBar = (
+          <NavBar showMenu={true}>
+            <NavLink>Test 1</NavLink>
+            <NavLink>Test 2</NavLink>
+            <NavLink>Test 3</NavLink>
+          </NavBar>
+        );
+
+        const wrapper = mount(navBar);
+        const closeButton = wrapper.find("#nav-close-button");
+        expect(closeButton.length).to.be.greaterThan(0);
+      });
+
+      it("toggles triggers menuClick action", () => {
+        const onMenuClick = sinon.spy();
+        const navBar = (
+          <NavBar showMenu={true} onMenuClick={onMenuClick}>
+            <NavLink>Test 1</NavLink>
+            <NavLink>Test 2</NavLink>
+            <NavLink>Test 3</NavLink>
+          </NavBar>
+        );
+
+        const wrapper = mount(navBar);
+        const closeButton = wrapper.find("#nav-close-button");
+        closeButton.first().simulate("click");
+        expect(onMenuClick.called).to.be.true;
+      });
     });
   });
 });

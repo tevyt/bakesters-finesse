@@ -68,11 +68,12 @@ export const NavMenu = props => {
   return (
     <NavMenuDiv>
       MENU
-      <Hamburger>
+      <Hamburger id="nav-hamburger" onClick={props.onMenuClick}>
         <span />
         <span />
         <span />
       </Hamburger>
+      {props.showMenu ? <div id="nav-menu">FULL MENU</div> : null}
     </NavMenuDiv>
   );
 };
@@ -81,7 +82,9 @@ export default props => {
   return (
     <nav>
       <NavList>{props.children}</NavList>
-      <NavMenu>{props.children}</NavMenu>
+      <NavMenu showMenu={props.showMenu} onMenuClick={props.onMenuClick}>
+        {props.children}
+      </NavMenu>
     </nav>
   );
 };

@@ -26,6 +26,9 @@ const Logo = styled.img`
 const Container = styled.div`
   position: relative;
   width: 100%;
+  ${media.handheld`
+    padding-top: 60px;
+  `};
   ${media.desktop`
       width: 80%;
       margin: auto;

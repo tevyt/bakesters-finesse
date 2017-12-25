@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { expect } from "chai";
 
-import Header, { Logo } from "..";
+import Header, { Logo } from "../view";
 
 describe("Header", () => {
   const wrapper = mount(<Header />);

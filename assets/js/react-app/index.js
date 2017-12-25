@@ -1,4 +1,7 @@
 import React from "react";
+import { Provider } from "react-redux";
+import store from "./store";
+import Header from "./components/header";
 import Home from "./scenes/home/view";
 import styled from "styled-components";
 import colors from "./styles/colors";
@@ -15,8 +18,11 @@ export default () => {
   `;
 
   return (
-    <AppContainer>
-      <Home />
-    </AppContainer>
+    <Provider store={store}>
+      <AppContainer>
+        <Header />
+        <Home />
+      </AppContainer>
+    </Provider>
   );
 };

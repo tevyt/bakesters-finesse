@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import View from "./view";
 import { actionCreators } from "./reducer";
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     showMenu: state.showMenu
   };

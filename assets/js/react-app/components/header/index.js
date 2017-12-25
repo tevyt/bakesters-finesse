@@ -9,9 +9,9 @@ export const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return {
-    toggleShowMenu: () => dispatch(actionCreators.toggleShowMenu)
+    toggleShowMenu: () => dispatch(actionCreators.toggleShowMenu())
   };
 };
 

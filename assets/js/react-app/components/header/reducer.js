@@ -4,7 +4,7 @@ const initialState = {
   showMenu: false
 };
 
-const actions = {
+export const actions = {
   toggleShowMenu: "TOGGLE_SHOW_MENU"
 };
 
@@ -14,4 +14,13 @@ export const actionCreators = {
   })
 };
 
-export default handleActions(actionCreators, initialState);
+const toggleShowMenu = state => ({
+  ...state,
+  showMenu: !state.showMenu
+});
+
+export const handlers = {
+  [actions.toggleShowMenu]: toggleShowMenu
+};
+
+export default handleActions(handlers, initialState);

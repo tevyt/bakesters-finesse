@@ -5,23 +5,16 @@ import { mapStateToProps, mapDispatchToProps } from "..";
 
 describe("Header Container", () => {
   describe("mapStateToProps", () => {
-    it("returns props matching state when showMenu is false", () => {
+    it("returns props matching state", () => {
       const state = {
         header: {
-          showMenu: false
+          menuSlideIn: false,
+          menuSlideOut: false
         }
       };
-      const props = mapStateToProps(state);
-      expect(props.showMenu).to.equal(false);
-    });
-    it("returns props matching state when showMenu is true", () => {
-      const state = {
-        header: {
-          showMenu: true
-        }
-      };
-      const props = mapStateToProps(state);
-      expect(props.showMenu).to.equal(true);
+      const { menuSlideIn, menuSlideOut } = mapStateToProps(state);
+      expect(menuSlideIn).to.be.false;
+      expect(menuSlideOut).to.be.false;
     });
   });
 

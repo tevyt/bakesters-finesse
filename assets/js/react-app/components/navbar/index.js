@@ -8,10 +8,9 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/fontawesome-free-solid";
 
 const NavList = styled.ul`
-  ${media.desktop`
   list-style: none;
   padding: 0;
-  margin: 0;`};
+  margin: 0;
   ${media.handheld`
       display: none;
     `};
@@ -43,10 +42,9 @@ const Hamburger = styled.div`
 `;
 
 const NavMenuDiv = styled.div`
-  ${media.desktop`
-    display: none;
-  `};
+  display: none;
   ${media.handheld`
+    display: block;
     position: absolute;
     width: 100%;
     top: 0;

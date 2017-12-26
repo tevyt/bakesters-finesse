@@ -5,22 +5,34 @@ describe("Header reducer", () => {
   describe("reducer", () => {
     it("initial state", () => {
       const newState = reducer(undefined, {});
-      expect(newState).to.deep.equal({ showMenu: false });
+      expect(newState).to.deep.equal({
+        menuSlideIn: false,
+        menuSlideOut: false
+      });
     });
     describe("toggleShowMenu", () => {
-      it("sets showmenu to false if it is initially true", () => {
+      it("set slideIn to true and slideOut to false when called initially", () => {
         const initialstate = {
-          showMenu: true
+          menuSlideIn: false,
+          menuSlideOut: false
         };
-        const newstate = reducer(initialstate, actionCreators.toggleShowMenu());
-        expect(newstate).to.deep.equal({ showMenu: false });
+
+        const newState = reducer(initialstate, actionCreators.toggleShowMenu());
+        expect(newState).to.deep.equal({
+          menuSlideIn: true,
+          menuSlideOut: false
+        });
       });
-      it("sets showmenu to true if it is initially false", () => {
+      it("swaps the values of menuSlideIn and menuSlideOut", () => {
         const initialstate = {
-          showMenu: false
+          menuSlideIn: true,
+          menuSlideOut: false
         };
         const newstate = reducer(initialstate, actionCreators.toggleShowMenu());
-        expect(newstate).to.deep.equal({ showMenu: true });
+        expect(newstate).to.deep.equal({
+          menuSlideIn: false,
+          menuSlideOut: true
+        });
       });
     });
   });

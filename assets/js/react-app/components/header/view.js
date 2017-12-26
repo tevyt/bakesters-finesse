@@ -73,7 +73,7 @@ export default props => {
   return (
     <Container>
       <Nav>
-        <Logo src={images.bakestersLogo} />
+        <Logo className="main-logo" src={images.bakestersLogo} />
         <NavBar {...props}>
           <NavLink text="Gallery" href="" />
           <NavLink text="About" href="" />
@@ -86,14 +86,20 @@ export default props => {
         </Location>
         <SocialMediaLinks>
           <SocialMediaLink
+            className="social-media-link"
             provider={providers.instagram}
             profile="https://www.instagram.com/bakestersfinesse/"
           />
           <SocialMediaLink
+            className="social-media-link"
             provider={providers.facebook}
             profile="https://www.facebook.com/Bakestersfinesse/"
           />
-          <SocialMediaLink provider={providers.email} profile="" />
+          <SocialMediaLink
+            className="social-media-link"
+            provider={providers.email}
+            profile=""
+          />
         </SocialMediaLinks>
       </Links>
     </Container>

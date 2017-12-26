@@ -13,7 +13,14 @@ describe("NavBar", () => {
     </NavBar>
   );
   it("renders", () => {
-    expect(mount(<NavBar />)).to.be.ok;
+    expect(
+      mount(
+        <NavBar>
+          <NavLink />
+          <NavLink />
+        </NavBar>
+      )
+    ).to.be.ok;
   });
   it("renders links passed in its body", () => {
     const navBar = (
@@ -35,7 +42,7 @@ describe("NavBar", () => {
   it("clicking the hamburger triggers the onMenuClick function", () => {
     const onMenuClick = sinon.spy();
     const navBar = (
-      <NavBar onMenuClick={onMenuClick}>
+      <NavBar toggleShowMenu={onMenuClick}>
         <NavLink>Test 1</NavLink>
         <NavLink>Test 2</NavLink>
         <NavLink>Test 3</NavLink>
@@ -49,18 +56,6 @@ describe("NavBar", () => {
     expect(onMenuClick.called).to.be.true;
   });
 
-  it("does not render the full menu if showMenu is false", () => {
-    const navBar = (
-      <NavBar showMenu={false}>
-        <NavLink>Test 1</NavLink>
-        <NavLink>Test 2</NavLink>
-        <NavLink>Test 3</NavLink>
-      </NavBar>
-    );
-
-    const wrapper = mount(navBar);
-    expect(wrapper.find("#nav-menu")).to.have.lengthOf(0);
-  });
   describe("NavLink", () => {
     it("contains an li", () => {
       expect(mount(<NavLink />).find("li")).to.have.lengthOf(1);
@@ -76,7 +71,7 @@ describe("NavBar", () => {
   describe("Full Menu", () => {
     it("renders the full menu when showMenu prop is true", () => {
       const navBar = (
-        <NavBar showMenu={true}>
+        <NavBar>
           <NavLink>Test 1</NavLink>
           <NavLink>Test 2</NavLink>
           <NavLink>Test 3</NavLink>
@@ -105,7 +100,7 @@ describe("NavBar", () => {
       it("toggles triggers menuClick action", () => {
         const onMenuClick = sinon.spy();
         const navBar = (
-          <NavBar showMenu={true} onMenuClick={onMenuClick}>
+          <NavBar toggleShowMenu={onMenuClick}>
             <NavLink>Test 1</NavLink>
             <NavLink>Test 2</NavLink>
             <NavLink>Test 3</NavLink>

@@ -74,7 +74,7 @@ export default props => {
     <Container>
       <Nav>
         <Logo src={images.bakestersLogo} />
-        <NavBar onMenuClick={props.toggleShowMenu} showMenu={props.showMenu}>
+        <NavBar {...props}>
           <NavLink text="Gallery" href="" />
           <NavLink text="About" href="" />
           <NavLink text="Contact" href="" />

@@ -1,7 +1,8 @@
 import { handleActions } from "redux-actions";
 
 const initialState = {
-  showMenu: false
+  menuSlideIn: false,
+  menuSlideOut: false
 };
 
 export const actions = {
@@ -14,10 +15,22 @@ export const actionCreators = {
   })
 };
 
-const toggleShowMenu = state => ({
-  ...state,
-  showMenu: !state.showMenu
-});
+const toggleShowMenu = state => {
+  const { menuSlideIn, menuSlideOut } = state;
+  if (!menuSlideIn && !menuSlideOut) {
+    return {
+      ...state,
+      menuSlideIn: true,
+      menuSlideOut: false
+    };
+  } else {
+    return {
+      ...state,
+      menuSlideIn: !menuSlideIn,
+      menuSlideOut: !menuSlideOut
+    };
+  }
+};
 
 export const handlers = {
   [actions.toggleShowMenu]: toggleShowMenu

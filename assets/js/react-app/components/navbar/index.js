@@ -74,9 +74,33 @@ export const NavFullMenu = props => {
     }
 
     to{
-      transform: translate(0);
+      transform: translate(0px);
     }
   `;
+
+  const slideOut = keyframes`
+    from{
+      transform: translate(0);
+    }
+
+    to{
+      transform: translate(1000px);
+    }
+
+  `;
+  const getAnimation = props => {
+    if (props.menuSlideIn) {
+      return `animation ${slideIn} 0.5s ease-in-out;`;
+    }
+    if (props.menuSlideOut) {
+      return `animation ${slideOut} 0.5s linear;`;
+    }
+
+    return "";
+  };
+
+  const animation = getAnimation(props);
+
   const NavFullDiv = styled.div`
     position: absolute;
     width: 100vw;
@@ -84,8 +108,8 @@ export const NavFullMenu = props => {
     background-color: ${color.white};
     color: ${color.red};
     top: 0;
-    left: 0;
-    animation: ${slideIn} 0.5s ease-in-out;
+    left: ${!props.menuSlideIn && !props.menuSlideOut ? "-1000px" : "0"};
+    ${animation} animation-fill-mode: forwards;
     z-index: 10;
   `;
 
@@ -114,11 +138,8 @@ export const NavFullMenu = props => {
   `;
 
   return (
-    <NavFullDiv
-      className={`${props.showMenu ? "navbar-slide" : ""}`}
-      id="nav-menu"
-    >
-      <CloseButton id="nav-close-button" onClick={props.onMenuClick}>
+    <NavFullDiv id="nav-menu">
+      <CloseButton id="nav-close-button" onClick={props.toggleShowMenu}>
         <FontAwesomeIcon icon={faWindowClose} />
       </CloseButton>
       <Logo src={images.bakestersLogo} />
@@ -134,12 +155,12 @@ export const NavMenu = props => {
   return (
     <NavMenuDiv>
       MENU
-      <Hamburger id="nav-hamburger" onClick={props.onMenuClick}>
+      <Hamburger id="nav-hamburger" onClick={props.toggleShowMenu}>
         <span />
         <span />
         <span />
       </Hamburger>
-      {props.showMenu ? <NavFullMenu {...props} /> : null}
+      <NavFullMenu {...props} />
     </NavMenuDiv>
   );
 };
@@ -148,9 +169,7 @@ export default props => {
   return (
     <nav>
       <NavList>{props.children}</NavList>
-      <NavMenu showMenu={props.showMenu} onMenuClick={props.onMenuClick}>
-        {props.children}
-      </NavMenu>
+      <NavMenu {...props} />
     </nav>
   );
 };

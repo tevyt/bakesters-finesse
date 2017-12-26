@@ -5,7 +5,8 @@ import { actionCreators } from "./reducer";
 
 export const mapStateToProps = ({ header: state }) => {
   return {
-    showMenu: state.showMenu
+    menuSlideIn: state.menuSlideIn,
+    menuSlideOut: state.menuSlideOut
   };
 };
 

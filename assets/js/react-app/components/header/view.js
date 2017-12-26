@@ -23,18 +23,6 @@ const Logo = styled.img`
   `};
 `;
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  ${media.handheld`
-    padding-top: 60px;
-  `};
-  ${media.desktop`
-      width: 80%;
-      margin: auto;
-    `};
-`;
-
 const Links = styled.div`
   position: absolute;
   top: 0;
@@ -68,7 +56,32 @@ const Nav = styled.div`
   `};
 `;
 
+const noScroll = () => window.scrollTo(0, 0);
+const disableScrolling = () => {
+  window.addEventListener("scroll", noScroll);
+};
+
+const enableScrolling = () => {
+  window.removeEventListener("scroll", noScroll);
+};
 export default props => {
+  const Container = styled.div`
+    position: relative;
+    width: 100%;
+    padding-top: 60px;
+    min-height: 650px;
+    ${media.desktop`
+      width: 80%
+      margin: auto
+    `};
+  `;
+
+  if (props.menuSlideIn) {
+    disableScrolling();
+  } else {
+    enableScrolling();
+  }
+
   const bakeryLocation = "https://goo.gl/maps/MG3Ct1nUo3P2";
   return (
     <Container>

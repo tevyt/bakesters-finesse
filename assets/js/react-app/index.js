@@ -15,6 +15,7 @@ export default () => {
 
   const AppContainer = styled.div`
     font-family: "Oswald", sans-serif;
+    overflow-x: hidden;
   `;
 
   return (

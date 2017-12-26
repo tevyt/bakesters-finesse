@@ -1,16 +1,20 @@
 /* This file is for your main application css. */
 
 /* I hate default hyperlink styling*/
-a{
-    outline: 0;
-    text-decoration: none;
+body {
+  margin: 0;
 }
 
-a:active{
-    outline: 0;
-    -moz-outline-style: none;
+a {
+  outline: 0;
+  text-decoration: none;
 }
 
-a:hover{
-    text-decoration: none;
+a:active {
+  outline: 0;
+  -moz-outline-style: none;
+}
+
+a:hover {
+  text-decoration: none;
 }

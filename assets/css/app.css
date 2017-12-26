@@ -18,3 +18,7 @@ a:active {
 a:hover {
   text-decoration: none;
 }
+
+div {
+  overflow-x: hidden;
+}

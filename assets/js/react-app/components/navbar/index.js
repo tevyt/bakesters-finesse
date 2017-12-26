@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import color from "../../styles/colors";
 import media from "../../styles/media";
@@ -68,6 +68,15 @@ export const NavLink = props => {
 };
 
 export const NavFullMenu = props => {
+  const slideIn = keyframes`
+    from{
+      transform: translate(1000px)
+    }
+
+    to{
+      transform: translate(0);
+    }
+  `;
   const NavFullDiv = styled.div`
     position: absolute;
     width: 100vw;
@@ -76,6 +85,7 @@ export const NavFullMenu = props => {
     color: ${color.red};
     top: 0;
     left: 0;
+    animation: ${slideIn} 0.5s ease-in-out;
     z-index: 10;
   `;
 
@@ -104,7 +114,10 @@ export const NavFullMenu = props => {
   `;
 
   return (
-    <NavFullDiv id="nav-menu">
+    <NavFullDiv
+      className={`${props.showMenu ? "navbar-slide" : ""}`}
+      id="nav-menu"
+    >
       <CloseButton id="nav-close-button" onClick={props.onMenuClick}>
         <FontAwesomeIcon icon={faWindowClose} />
       </CloseButton>

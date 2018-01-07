@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { expect } from "chai";
 import sinon from "sinon";
 
@@ -7,7 +7,7 @@ import utils from "../utils";
 import Header, { Logo } from "../view";
 
 describe("Header", () => {
-  const wrapper = mount(<Header />);
+  const wrapper = shallow(<Header />);
   let disableScrollingStub = null;
   let enableScrollingStub = null;
 
@@ -38,15 +38,16 @@ describe("Header", () => {
     expect(wrapper.find(".social-media-link")).to.have.lengthOf(3);
   });
   it("contains the bakery location", () => {
-    expect(wrapper.find("#bakery-location")).to.exist;
+    const wrapper = shallow(<Header />);
+    expect(wrapper.find("#bakery-location")).to.have.lengthOf(1);
   });
   it("contains a navbar", () => {
-    expect(wrapper.find("nav")).to.have.lengthOf(1);
+    expect(wrapper.find("#nav")).to.have.lengthOf(1);
   });
   describe("NavBar", () => {
     it("contains 3 links", () => {
-      const navList = wrapper.find("nav ul").first();
-      expect(navList.find("li")).to.have.lengthOf(3);
+      const navList = wrapper.find("#nav-bar");
+      expect(navList.children()).to.have.lengthOf(3);
     });
   });
 });

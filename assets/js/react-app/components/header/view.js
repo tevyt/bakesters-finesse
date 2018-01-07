@@ -77,12 +77,12 @@ export default props => {
     enableScrolling(window);
   }
 
-  const bakeryLocation = "https://goo.gl/maps/MG3Ct1nUo3P2";
+  const bakeryLocation = "https://goo.gl/maps/QRMjGXbGRGC2";
   return (
     <Container>
-      <Nav>
+      <Nav id="nav">
         <Logo className="main-logo" src={images.bakestersLogo} />
-        <NavBar {...props}>
+        <NavBar id="nav-bar" {...props}>
           <NavLink text="Gallery" href="" />
           <NavLink text="About" href="" />
           <NavLink text="Contact" href="" />
@@ -90,7 +90,7 @@ export default props => {
       </Nav>
       <Links>
         <Location id="bakery-location" href={bakeryLocation} target="_blank">
-          Ward Avenue, Mandeville Jamaica
+          Mandeville Jamaica
         </Location>
         <SocialMediaLinks>
           <SocialMediaLink

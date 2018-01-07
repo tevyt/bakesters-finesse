@@ -1,13 +1,35 @@
 import React from "react";
 import { mount } from "enzyme";
 import { expect } from "chai";
+import sinon from "sinon";
 
+import utils from "../utils";
 import Header, { Logo } from "../view";
 
 describe("Header", () => {
   const wrapper = mount(<Header />);
+  let disableScrollingStub = null;
+  let enableScrollingStub = null;
+
+  //Setup Stubs
+  beforeEach(() => {
+    disableScrollingStub = sinon.stub(utils, "disableScrolling");
+
+    enableScrollingStub = sinon.stub(utils, "enableScrolling");
+  });
+
+  //Tear Down Stubs
+  afterEach(() => {
+    disableScrollingStub.restore();
+    enableScrollingStub.restore();
+  });
+
   it("renders", () => {
     expect(wrapper).to.be.ok;
+  });
+  it("disables scrolling when menu is present", () => {
+    const wrapper = mount(<Header menuSlideIn={true} />);
+    expect(disableScrollingStub.called).to.be.true;
   });
   it("contains a logo", () => {
     expect(wrapper.find(".main-logo").length).to.be.greaterThan(0);

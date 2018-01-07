@@ -1,6 +1,7 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
+import { getAnimation } from "./utils";
 import color from "../../styles/colors";
 import media from "../../styles/media";
 import images from "../../images";
@@ -66,37 +67,6 @@ export const NavLink = props => {
 };
 
 export const NavFullMenu = props => {
-  const slideIn = keyframes`
-    from{
-      transform: translate(1000px)
-    }
-
-    to{
-      transform: translate(0px);
-    }
-  `;
-
-  const slideOut = keyframes`
-    from{
-      transform: translate(0);
-    }
-
-    to{
-      transform: translate(1000px);
-    }
-
-  `;
-  const getAnimation = props => {
-    if (props.menuSlideIn) {
-      return `animation ${slideIn} 0.5s ease-in-out;`;
-    }
-    if (props.menuSlideOut) {
-      return `animation ${slideOut} 0.5s linear;`;
-    }
-
-    return "";
-  };
-
   const animation = getAnimation(props);
 
   const NavFullDiv = styled.div`

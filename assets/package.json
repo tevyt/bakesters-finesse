@@ -6,15 +6,12 @@
   "scripts": {
     "deploy": "brunch build --production",
     "watch": "brunch watch --stdin",
-    "test": "nyc node_modules/mocha/bin/mocha --require js/test_helpers/index.js 'js/**/*.spec.js'",
+    "test":
+      "nyc node_modules/mocha/bin/mocha --require js/test_helpers/index.js 'js/**/*.spec.js'",
     "test:watch": "npm test -- --watch"
   },
   "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-2"
-    ]
+    "presets": ["es2015", "react", "stage-2"]
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.0.1",

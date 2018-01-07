@@ -6,6 +6,7 @@ import media from "../../styles/media";
 import colors from "../../styles/colors";
 import SocialMediaLink from "../social-media-link";
 import NavBar, { NavLink } from "../navbar";
+import utils from "./utils";
 
 const Logo = styled.img`
   width: 175px;
@@ -56,14 +57,6 @@ const Nav = styled.div`
   `};
 `;
 
-const noScroll = () => window.scrollTo(0, 0);
-const disableScrolling = () => {
-  window.addEventListener("scroll", noScroll);
-};
-
-const enableScrolling = () => {
-  window.removeEventListener("scroll", noScroll);
-};
 export default props => {
   const Container = styled.div`
     position: relative;
@@ -76,10 +69,12 @@ export default props => {
     `};
   `;
 
+  const { disableScrolling, enableScrolling, scrollTo } = utils;
+
   if (props.menuSlideIn) {
-    disableScrolling();
+    disableScrolling(window);
   } else {
-    enableScrolling();
+    enableScrolling(window);
   }
 
   const bakeryLocation = "https://goo.gl/maps/MG3Ct1nUo3P2";

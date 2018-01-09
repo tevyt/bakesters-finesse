@@ -24,15 +24,15 @@ const Logo = styled.img`
 
 const Links = styled.div`
   text-align: center;
-  ${media.desktop`
   position: absolute;
   top: 0;
   right: 20%;
- `} ${media.handheld`
+  ${media.handheld`
     display: block;
     position: relative;
     margin: auto;
     width: 60%;
+    right: 0;
   `};
 `;
 

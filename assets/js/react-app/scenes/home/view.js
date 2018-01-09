@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+import colors from "../../styles/colors";
 
 export default props => {
   const featuredItems = [
@@ -7,10 +9,25 @@ export default props => {
     "https://res.cloudinary.com/dv8aqe8lm/image/upload/v1515357301/WhatsApp_Image_2017-12-30_at_1.49.33_PM_jufrad.jpg"
   ];
 
-  return null;
-  // <div className="home">
-  //   <div className="home__featured-items">
-  //     {featuredItems.map((item, index) => <img src={item} key={index} />)}
-  //   </div>
-  // </div>
+  const FeaturedItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
+
+  const FeaturedItem = styled.img`
+    width: 75%;
+    margin: 20px;
+    border: 5px solid ${colors.green};
+  `;
+
+  return (
+    <div className="home">
+      <FeaturedItems>
+        {featuredItems.map((item, index) => (
+          <FeaturedItem src={item} key={index} />
+        ))}
+      </FeaturedItems>
+    </div>
+  );
 };

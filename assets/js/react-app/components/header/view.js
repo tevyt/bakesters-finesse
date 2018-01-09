@@ -15,9 +15,7 @@ const Logo = styled.img`
   position: absoloute;
   left: 0;
   top: 0;
-  ${media.desktop`
-    margin: 20px;
-  `} ${media.handheld`
+  ${media.handheld`
     display: block;
     position: relative;
     margin: auto;
@@ -25,11 +23,12 @@ const Logo = styled.img`
 `;
 
 const Links = styled.div`
+  text-align: center;
+  ${media.desktop`
   position: absolute;
   top: 0;
-  right: 0;
-  text-align: center;
-  ${media.handheld`
+  right: 20%;
+ `} ${media.handheld`
     display: block;
     position: relative;
     margin: auto;
@@ -62,7 +61,6 @@ export default props => {
     position: relative;
     width: 100%;
     padding-top: 60px;
-    min-height: 650px;
     ${media.desktop`
       width: 80%
       margin: auto

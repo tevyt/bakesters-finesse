@@ -70,15 +70,18 @@ export const NavFullMenu = props => {
   const animation = getAnimation(props);
 
   const NavFullDiv = styled.div`
-    position: absolute;
+    ${media.desktop`
+    display: none;
+    `} position: absolute;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: ${color.white};
     color: ${color.red};
     top: 0;
+    bottom: 0;
     left: ${!props.menuSlideIn && !props.menuSlideOut ? "-1000px" : "0"};
     ${animation} animation-fill-mode: forwards;
-    z-index: 10;
+    z-index: 100;
   `;
 
   const CloseButton = styled.div`
@@ -121,23 +124,30 @@ export const NavFullMenu = props => {
 };
 export const NavMenu = props => {
   return (
-    <NavMenuDiv>
-      MENU
-      <Hamburger id="nav-hamburger" onClick={props.toggleShowMenu}>
-        <span />
-        <span />
-        <span />
-      </Hamburger>
-      <NavFullMenu {...props} />
-    </NavMenuDiv>
+    <div className="nav-menu">
+      <NavMenuDiv>
+        MENU
+        <Hamburger id="nav-hamburger" onClick={props.toggleShowMenu}>
+          <span />
+          <span />
+          <span />
+        </Hamburger>
+      </NavMenuDiv>
+    </div>
   );
 };
 
 export default props => {
+  const Nav = styled.nav`
+    ${media.handheld`
+      ${props.menuSlideIn ? "height: 100vh;" : null};
+    `};
+  `;
   return (
-    <nav>
+    <Nav>
       <NavList>{props.children}</NavList>
+      <NavFullMenu {...props} />
       <NavMenu {...props} />
-    </nav>
+    </Nav>
   );
 };

@@ -1,8 +1,10 @@
 /* This file is for your main application css. */
 
 /* I hate default hyperlink styling*/
+html,
 body {
   margin: 0;
+  height: 100vh;
 }
 
 a {

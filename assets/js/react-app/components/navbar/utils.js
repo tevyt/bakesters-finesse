@@ -2,7 +2,7 @@ import { keyframes } from "styled-components";
 
 export const slideIn = keyframes`
     from{
-      transform: translate(1000px)
+      transform: translate(800px)
     }
 
     to{
@@ -16,14 +16,14 @@ export const slideOut = keyframes`
     }
 
     to{
-      transform: translate(1000px);
+      transform: translate(800px);
     }
 
   `;
 
 export const getAnimation = ({ menuSlideIn, menuSlideOut }) => {
   if (menuSlideIn) {
-    return `animation ${slideIn} 0.5s ease-in-out;`;
+    return `animation ${slideIn} 0.4s ease-in-out;`;
   }
   if (menuSlideOut) {
     return `animation ${slideOut} 0.5s linear;`;

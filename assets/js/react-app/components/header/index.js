@@ -6,10 +6,14 @@ import EmailOutlineIcon from "mdi-react/EmailOutlineIcon";
 
 import Navbar from "./components/navbar";
 
-function Header({ isNavbarActive, onNavBurgerClick }) {
+function Header({ isNavbarActive, onNavBurgerClick, onNavLinkClick }) {
   return (
     <section className="section header font-cursive">
-      <Navbar isActive={isNavbarActive} onBurgerClick={onNavBurgerClick} />
+      <Navbar
+        isActive={isNavbarActive}
+        onBurgerClick={onNavBurgerClick}
+        onNavLinkClick={onNavLinkClick}
+      />
       <div className="social-media-links">
         <a
           className="social-media-link icon is-medium"
@@ -35,8 +39,9 @@ function Header({ isNavbarActive, onNavBurgerClick }) {
 }
 
 Header.propTypes = {
-  isNavbarActive: PropTypes.bool,
-  onNavBurgerClick: PropTypes.func.isRequired
+  isNavbarActive: PropTypes.bool.isRequired,
+  onNavBurgerClick: PropTypes.func.isRequired,
+  onNavLinkClick: PropTypes.func.isRequired
 };
 
 export default Header;

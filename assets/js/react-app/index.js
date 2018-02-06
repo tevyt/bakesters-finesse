@@ -16,6 +16,11 @@ class App extends Component {
       isNavbarActive: !state.isNavbarActive
     }));
   }
+
+  deactivateNavbar() {
+    this.setState({ isNavbarActive: false });
+  }
+
   render() {
     return (
       <Router>
@@ -23,6 +28,7 @@ class App extends Component {
           <Header
             isNavbarActive={this.state.isNavbarActive}
             onNavBurgerClick={this.toggleNavbarActive.bind(this)}
+            onNavLinkClick={this.deactivateNavbar.bind(this)}
           />
           <Switch>
             <Route exact path="/" component={Home} />

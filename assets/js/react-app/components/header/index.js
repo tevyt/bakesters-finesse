@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import FacebookIcon from "mdi-react/FacebookIcon";
 import InstagramIcon from "mdi-react/InstagramIcon";
 import EmailOutlineIcon from "mdi-react/EmailOutlineIcon";
+import { Link } from "react-router-dom";
 
 import Navbar from "./components/navbar";
 
@@ -17,22 +18,19 @@ function Header({ isNavbarActive, onNavBurgerClick, onNavLinkClick }) {
       <div className="social-media-links">
         <a
           className="social-media-link icon is-medium"
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/bakestersfinesse/"
         >
           <InstagramIcon />
         </a>
         <a
           className="social-media-link icon is-medium"
-          href="https://www.facebook.com"
+          href="https://www.facebook.com/Bakestersfinesse/"
         >
           <FacebookIcon />
         </a>
-        <a
-          className="social-media-link icon is-medium"
-          href="https://www.facebook.com"
-        >
+        <Link className="social-media-link icon is-medium" to="/contact">
           <EmailOutlineIcon />
-        </a>
+        </Link>
       </div>
     </section>
   );

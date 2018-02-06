@@ -20,7 +20,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["web/static/css/app.scss"]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -59,8 +62,6 @@ exports.config = {
 
   npm: {
     enabled: true,
-    whitelist: ["phoenix", "phoenix_html", "react",
-      "react-dom", "redux", "react-redux"
-    ]
+    whitelist: ["phoenix", "phoenix_html", "react", "react-dom"]
   }
 };

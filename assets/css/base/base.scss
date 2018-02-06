@@ -1,0 +1,16 @@
+@import "./pallete.scss";
+
+.font {
+  &-regular {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  &-cursive {
+    font-family: "Great Vibes", cursive;
+  }
+}
+
+html {
+  font-size: 16px;
+  background-color: $color-background;
+}

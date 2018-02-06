@@ -1,29 +1,43 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./store";
+import React, { Component } from "react"; //eslint-disable-line
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+
 import Header from "./components/header";
-import Home from "./scenes/home/view";
-import styled from "styled-components";
-import colors from "./styles/colors";
-import media from "./styles/media";
+import Home from "./screens/home";
+import Gallery from "./screens/gallery";
 
-export default () => {
-  //Set body color when application is rendered
-  document
-    .getElementsByTagName("body")[0]
-    .setAttribute("style", `background-color: ${colors.lightPink}`);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isNavbarActive: false };
+  }
 
-  const AppContainer = styled.div`
-    font-family: "Oswald", sans-serif;
-    overflow-x: hidden;
-  `;
+  toggleNavbarActive() {
+    this.setState(state => ({
+      isNavbarActive: !state.isNavbarActive
+    }));
+  }
 
-  return (
-    <Provider store={store}>
-      <AppContainer>
-        <Header />
-        <Home />
-      </AppContainer>
-    </Provider>
-  );
-};
+  deactivateNavbar() {
+    this.setState({ isNavbarActive: false });
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="app container font-regular">
+          <Header
+            isNavbarActive={this.state.isNavbarActive}
+            onNavBurgerClick={this.toggleNavbarActive.bind(this)}
+            onNavLinkClick={this.deactivateNavbar.bind(this)}
+          />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/gallery" component={Gallery} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;

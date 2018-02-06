@@ -1,29 +1,10 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./store";
-import Header from "./components/header";
-import Home from "./scenes/home/view";
-import styled from "styled-components";
-import colors from "./styles/colors";
-import media from "./styles/media";
+import React, { Component } from "react"; //eslint-disable-line
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
-export default () => {
-  //Set body color when application is rendered
-  document
-    .getElementsByTagName("body")[0]
-    .setAttribute("style", `background-color: ${colors.lightPink}`);
+class App extends Component {
+  render() {
+    return <div>Component</div>;
+  }
+}
 
-  const AppContainer = styled.div`
-    font-family: "Oswald", sans-serif;
-    overflow-x: hidden;
-  `;
-
-  return (
-    <Provider store={store}>
-      <AppContainer>
-        <Header />
-        <Home />
-      </AppContainer>
-    </Provider>
-  );
-};
+export default App;

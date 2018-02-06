@@ -8,12 +8,14 @@
     <meta name="author" content="Travis Smith">
 
     <title>Bakester's Finesse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes" />
+    <link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans" />
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="app"></div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

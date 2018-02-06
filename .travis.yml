@@ -9,7 +9,6 @@ services:
 script:
 - mix test
 - npm --prefix ./assets install ./assets
-- npm --prefix ./assets test ./assets
 
 after_deploy:
   - wget -q0- https://toolbelt.heroku.com/install.sh | sh

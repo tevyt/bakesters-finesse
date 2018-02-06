@@ -15,6 +15,9 @@ function Navbar({ isActive, onBurgerClick, onNavLinkClick }) {
         onHomeLinkClick={onNavLinkClick}
       />
       <NavbarMenu isActive={isActive} onNavLinkClick={onNavLinkClick}>
+        <Link className="navbar-item" to="/">
+          Home
+        </Link>
         <Link className="navbar-item" to="/about">
           About
         </Link>

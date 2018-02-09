@@ -1,0 +1,22 @@
+@import "../base/pallete.scss";
+.contact {
+  .contact-options {
+    .contact-option {
+      margin-top: 10px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      a {
+        color: $color-active;
+        font-size: 0.7em;
+        &:hover {
+          color: $color-green-dark;
+        }
+      }
+      .icon {
+        background-color: $color-active;
+        margin-right: 10px;
+      }
+    }
+  }
+}

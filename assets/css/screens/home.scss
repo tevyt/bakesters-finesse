@@ -1,0 +1,9 @@
+@import "../base/pallete.scss";
+.home {
+  .photo-grid {
+    padding: 10px;
+  }
+  figure.tile {
+    border: 2px solid $color-secondary;
+  }
+}

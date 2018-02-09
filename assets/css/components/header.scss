@@ -30,6 +30,9 @@
       svg {
         fill: white;
       }
+      &:hover {
+        background-color: $color-green-dark;
+      }
     }
   }
 }

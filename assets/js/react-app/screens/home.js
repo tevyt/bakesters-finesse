@@ -3,7 +3,7 @@ import React from "react"; //eslint-disable-line
 function Home() {
   return (
     <section className="home section">
-      <div className="tile is-ancestor">
+      <div className="tile is-ancestor photo-grid">
         <div className="tile is-3 is-parent is-vertical">
           <figure className="tile is-child image is-2by1">
             <img src="https://res.cloudinary.com/dv8aqe8lm/image/upload/c_scale,w_1280/v1515357309/WhatsApp_Image_2017-12-30_at_1.49.25_PM_xec6yl.jpg" />

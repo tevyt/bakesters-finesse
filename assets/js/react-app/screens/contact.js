@@ -13,22 +13,27 @@ class Contact extends Component {
       name: {
         value: "",
         dirty: false,
-        valid: false
+        valid: false,
+        validator: value => value.length > 0
       },
       email: {
         value: "",
         dirty: false,
-        valid: false
+        valid: false,
+        validator: value =>
+          value.match(/^[a-zA-Z0-9_\-.+]+@[a-zA-Z0-9_\-.+]+\.[a-zA-Z]{2,5}$/)
       },
       phone: {
         value: "",
         dirty: false,
-        valid: false
+        valid: false,
+        validator: value => value.length > 0
       },
       message: {
         value: "",
         dirty: false,
-        valid: false
+        valid: false,
+        validator: value => value.length >= 5
       }
     };
 
@@ -39,13 +44,15 @@ class Contact extends Component {
 
   onInput(fieldName) {
     const inputFunction = event => {
+      const validator = this.state.fields[fieldName].validator;
       this.setState({
         ...this.state,
         fields: {
           ...this.state.fields,
           [fieldName]: {
             ...this.state.fields[fieldName],
-            value: event.target.value
+            value: event.target.value,
+            valid: validator(event.target.value)
           }
         }
       });

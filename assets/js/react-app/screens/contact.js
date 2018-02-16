@@ -33,8 +33,7 @@ class Contact extends Component {
     };
 
     this.state = {
-      fields,
-      dirty: false
+      fields
     };
   }
 
@@ -108,6 +107,15 @@ function ContactOptions() {
 }
 
 function ContactForm({ onInput, fields }) {
+  const isFieldInError = fieldName => {
+    const field = fields[fieldName];
+    return field.dirty && !field.valid;
+  };
+
+  const inputClass = (inputType, fieldName) => {
+    return `${inputType} ${isFieldInError(fieldName) ? "is-danger" : ""}`;
+  };
+
   return (
     <form
       className="contact-form"
@@ -120,19 +128,22 @@ function ContactForm({ onInput, fields }) {
         <label className="label">Name</label>
         <div className="control">
           <input
-            className="input"
+            className={inputClass("input", "name")}
             type="text"
             placeholder="Your Name"
             value={fields.name.value}
             onInput={onInput("name")}
           />
         </div>
+        {isFieldInError("name") ? (
+          <p className="help is-danger">Enter your name.</p>
+        ) : null}
       </div>
       <div className="field">
         <label className="label">Email</label>
         <div className="control has-icons-left">
           <input
-            className="input"
+            className={inputClass("input", "email")}
             type="email"
             placeholder="Your Email Address"
             value={fields.email.value}
@@ -142,6 +153,9 @@ function ContactForm({ onInput, fields }) {
             <EmailIcon />
           </span>
         </div>
+        {isFieldInError("email") ? (
+          <p className="help is-danger">Email is invalid.</p>
+        ) : null}
       </div>
       <div className="field">
         <label className="label">Phone</label>
@@ -161,11 +175,14 @@ function ContactForm({ onInput, fields }) {
         <label className="label">Message</label>
         <div className="control">
           <textarea
-            className="textarea"
+            className={inputClass("textarea", "message")}
             placeholder="Leave a message"
             onInput={onInput("message")}
           />
         </div>
+        {isFieldInError("message") ? (
+          <p className="help is-danger">Please leave a message</p>
+        ) : null}
       </div>
       <div className="field">
         <div className="control">

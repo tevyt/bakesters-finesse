@@ -135,6 +135,8 @@ function ContactForm({ onInput, fields }) {
             className="input"
             type="email"
             placeholder="Your Email Address"
+            value={fields.email.value}
+            onInput={onInput("email")}
           />
           <span className="icon is-small is-left">
             <EmailIcon />
@@ -144,7 +146,12 @@ function ContactForm({ onInput, fields }) {
       <div className="field">
         <label className="label">Phone</label>
         <div className="control has-icons-left">
-          <input className="input" type="tel" placeholder="Your Phone Number" />
+          <input
+            className="input"
+            type="tel"
+            placeholder="Your Phone Number"
+            onInput={onInput("phone")}
+          />
           <span className="icon is-small is-left">
             <PhoneInTalkIcon />
           </span>
@@ -153,7 +160,11 @@ function ContactForm({ onInput, fields }) {
       <div className="field">
         <label className="label">Message</label>
         <div className="control">
-          <textarea className="textarea" placeholder="Leave a message" />
+          <textarea
+            className="textarea"
+            placeholder="Leave a message"
+            onInput={onInput("message")}
+          />
         </div>
       </div>
       <div className="field">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PhoneInTalkIcon from "mdi-react/PhoneInTalkIcon";
 import InstagramIcon from "mdi-react/InstagramIcon";
 import EmailIcon from "mdi-react/EmailIcon";
@@ -6,19 +6,72 @@ import PropTypes from "prop-types";
 
 import CircleIcon from "../components/circle-icon";
 
-function Contact() {
-  return (
-    <section className="section contact">
-      <h1 className="title is-1 font-cursive">Contact</h1>
-      <p>
-        If you would like to place an order or enquire about our products and
-        services you may contact using any of the methods below.
-      </p>
-      <ContactOptions />
-      Or leave a message below...
-      <ContactForm />
-    </section>
-  );
+class Contact extends Component {
+  constructor(props) {
+    super(props);
+    const fields = {
+      name: {
+        value: "",
+        dirty: false,
+        valid: false
+      },
+      email: {
+        value: "",
+        dirty: false,
+        valid: false
+      },
+      phone: {
+        value: "",
+        dirty: false,
+        valid: false
+      },
+      message: {
+        value: "",
+        dirty: false,
+        valid: false
+      }
+    };
+
+    this.state = {
+      fields,
+      dirty: false
+    };
+  }
+
+  onInput(fieldName) {
+    const inputFunction = event => {
+      this.setState({
+        ...this.state,
+        fields: {
+          ...this.state.fields,
+          [fieldName]: {
+            ...this.state.fields[fieldName],
+            value: event.target.value
+          }
+        }
+      });
+    };
+
+    return inputFunction.bind(this);
+  }
+
+  render() {
+    return (
+      <section className="section contact">
+        <h1 className="title is-1 font-cursive">Contact</h1>
+        <p>
+          If you would like to place an order or enquire about our products and
+          services you may contact using any of the methods below.
+        </p>
+        <ContactOptions />
+        Or leave a message below...
+        <ContactForm
+          fields={this.state.fields}
+          onInput={this.onInput.bind(this)}
+        />
+      </section>
+    );
+  }
 }
 
 function ContactOption({ href, text, Icon }) {
@@ -54,7 +107,7 @@ function ContactOptions() {
   );
 }
 
-function ContactForm() {
+function ContactForm({ onInput, fields }) {
   return (
     <form
       className="contact-form"
@@ -66,7 +119,13 @@ function ContactForm() {
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
-          <input className="input" type="text" placeholder="Your Name" />
+          <input
+            className="input"
+            type="text"
+            placeholder="Your Name"
+            value={fields.name.value}
+            onInput={onInput("name")}
+          />
         </div>
       </div>
       <div className="field">
@@ -112,6 +171,11 @@ ContactOption.propTypes = {
   href: PropTypes.string,
   text: PropTypes.string,
   Icon: PropTypes.func.isRequired
+};
+
+ContactForm.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  fields: PropTypes.object.isRequired
 };
 
 export default Contact;

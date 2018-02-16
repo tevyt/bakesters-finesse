@@ -24,9 +24,6 @@ function Navbar({ isActive, onBurgerClick, onNavLinkClick }) {
         <Link className="navbar-item" to="/gallery">
           Gallery
         </Link>
-        <Link className="navbar-item" to="/order">
-          Order
-        </Link>
         <Link className="navbar-item" to="/contact">
           Contact
         </Link>

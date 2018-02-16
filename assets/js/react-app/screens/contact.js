@@ -54,6 +54,19 @@ class Contact extends Component {
     return inputFunction.bind(this);
   }
 
+  dirtyField(fieldName) {
+    this.setState({
+      ...this.state,
+      fields: {
+        ...this.state.fields,
+        [fieldName]: {
+          ...this.state.fields[fieldName],
+          dirty: true
+        }
+      }
+    });
+  }
+
   render() {
     return (
       <section className="section contact">
@@ -67,6 +80,7 @@ class Contact extends Component {
         <ContactForm
           fields={this.state.fields}
           onInput={this.onInput.bind(this)}
+          onBlur={this.dirtyField.bind(this)}
         />
       </section>
     );
@@ -106,7 +120,7 @@ function ContactOptions() {
   );
 }
 
-function ContactForm({ onInput, fields }) {
+function ContactForm({ onInput, onBlur, fields }) {
   const isFieldInError = fieldName => {
     const field = fields[fieldName];
     return field.dirty && !field.valid;
@@ -133,6 +147,7 @@ function ContactForm({ onInput, fields }) {
             placeholder="Your Name"
             value={fields.name.value}
             onInput={onInput("name")}
+            onBlur={() => onBlur("name")}
           />
         </div>
         {isFieldInError("name") ? (
@@ -148,6 +163,7 @@ function ContactForm({ onInput, fields }) {
             placeholder="Your Email Address"
             value={fields.email.value}
             onInput={onInput("email")}
+            onBlur={() => onBlur("email")}
           />
           <span className="icon is-small is-left">
             <EmailIcon />
@@ -161,15 +177,19 @@ function ContactForm({ onInput, fields }) {
         <label className="label">Phone</label>
         <div className="control has-icons-left">
           <input
-            className="input"
+            className={inputClass("input", "phone")}
             type="tel"
             placeholder="Your Phone Number"
             onInput={onInput("phone")}
+            onBlur={() => onBlur("phone")}
           />
           <span className="icon is-small is-left">
             <PhoneInTalkIcon />
           </span>
         </div>
+        {isFieldInError("phone") ? (
+          <p className="help is-danger">Phone number is invalid.</p>
+        ) : null}
       </div>
       <div className="field">
         <label className="label">Message</label>
@@ -178,6 +198,7 @@ function ContactForm({ onInput, fields }) {
             className={inputClass("textarea", "message")}
             placeholder="Leave a message"
             onInput={onInput("message")}
+            onBlur={() => onBlur("message")}
           />
         </div>
         {isFieldInError("message") ? (
@@ -203,6 +224,7 @@ ContactOption.propTypes = {
 
 ContactForm.propTypes = {
   onInput: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired
 };
 

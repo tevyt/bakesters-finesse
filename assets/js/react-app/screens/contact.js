@@ -74,6 +74,28 @@ class Contact extends Component {
     });
   }
 
+  submitForm(event) {
+    event.preventDefault();
+    //Dirty all fields when form is sumbitted
+
+    const fieldNames = Object.keys(this.state.fields);
+
+    let dirtiedFields = {};
+
+    fieldNames.forEach(
+      fieldName =>
+        (dirtiedFields[fieldName] = {
+          ...this.state.fields[fieldName],
+          dirty: true
+        })
+    );
+
+    this.setState({
+      ...this.state,
+      fields: dirtiedFields
+    });
+  }
+
   render() {
     return (
       <section className="section contact">
@@ -88,6 +110,7 @@ class Contact extends Component {
           fields={this.state.fields}
           onInput={this.onInput.bind(this)}
           onBlur={this.dirtyField.bind(this)}
+          onSubmit={this.submitForm.bind(this)}
         />
       </section>
     );
@@ -127,7 +150,7 @@ function ContactOptions() {
   );
 }
 
-function ContactForm({ onInput, onBlur, fields }) {
+function ContactForm({ onInput, onBlur, onSubmit, fields }) {
   const isFieldInError = fieldName => {
     const field = fields[fieldName];
     return field.dirty && !field.valid;
@@ -138,13 +161,7 @@ function ContactForm({ onInput, onBlur, fields }) {
   };
 
   return (
-    <form
-      className="contact-form"
-      onSubmit={e => {
-        e.preventDefault();
-        console.log("Form submitted");
-      }}
-    >
+    <form className="contact-form" onSubmit={onSubmit}>
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
@@ -232,6 +249,7 @@ ContactOption.propTypes = {
 ContactForm.propTypes = {
   onInput: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired
 };
 

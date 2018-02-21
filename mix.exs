@@ -41,7 +41,7 @@ defmodule Bakesters.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:bamboo, "~> 0.8"}
+      {:bamboo, "~> 0.8"},
     ]
   end
 

@@ -9,8 +9,8 @@ defmodule BakestersWeb.ContactController do
     case contact do
     %Ecto.Changeset{valid?: true} ->
       params
-      |> Contact.contact_email
-      |> Mailer.deliver_later
+      |> Contact.contact_email(Application.get_env(:bakesters, :recipient_email))
+      |> Mailer.deliver_now
 
       conn |> json(%{message: "Message sent."})
 

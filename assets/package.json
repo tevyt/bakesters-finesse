@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "mdi": "^2.1.19",
     "mdi-react": "^2.1.19",
     "node-sass": "^4.7.2",

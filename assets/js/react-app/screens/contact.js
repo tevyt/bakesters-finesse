@@ -3,6 +3,7 @@ import PhoneInTalkIcon from "mdi-react/PhoneInTalkIcon";
 import InstagramIcon from "mdi-react/InstagramIcon";
 import EmailIcon from "mdi-react/EmailIcon";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 import CircleIcon from "../components/circle-icon";
 
@@ -37,9 +38,13 @@ class Contact extends Component {
       }
     };
 
-    this.state = {
-      fields
+    this.intitialState = {
+      fields,
+      messageSent: false,
+      messageFailed: false
     };
+
+    this.state = this.intitialState;
   }
 
   onInput(fieldName) {
@@ -47,6 +52,8 @@ class Contact extends Component {
       const validator = this.state.fields[fieldName].validator;
       this.setState({
         ...this.state,
+        messageSent: false,
+        messageFailed: false,
         fields: {
           ...this.state.fields,
           [fieldName]: {
@@ -76,8 +83,47 @@ class Contact extends Component {
 
   submitForm(event) {
     event.preventDefault();
-    //Dirty all fields when form is sumbitted
 
+    this.dirtyAllFields();
+
+    if (this.allFieldsValid()) {
+      console.log(event);
+      this.sendEmail().then(() => event.target.reset());
+    }
+  }
+
+  sendEmail() {
+    const successCallBack = () => {
+      this.setState({
+        ...this.intitialState,
+        messageSent: true,
+        messageFailed: false
+      });
+    };
+
+    const errorCallBack = () => {
+      this.setState({
+        ...this.state,
+        messageSent: false,
+        messageFailed: true
+      });
+    };
+
+    const fields = this.state.fields;
+    const requestBody = {
+      name: fields.name.value,
+      phone: fields.phone.value,
+      email: fields.email.value,
+      message: fields.message.value
+    };
+
+    return axios
+      .post("/api/contact", requestBody)
+      .then(successCallBack)
+      .catch(errorCallBack);
+  }
+
+  dirtyAllFields() {
     const fieldNames = Object.keys(this.state.fields);
 
     let dirtiedFields = {};
@@ -96,6 +142,27 @@ class Contact extends Component {
     });
   }
 
+  allFieldsValid() {
+    const fieldNames = Object.keys(this.state.fields);
+    return fieldNames.every(field => this.state.fields[field].valid);
+  }
+
+  successNotification() {
+    return (
+      <div className="notification is-success">
+        Your message has been sent. We will get back to you soon.
+      </div>
+    );
+  }
+
+  errorNotification() {
+    return (
+      <div className="notification is-danger">
+        Sorry, an error occured. Please try again later.
+      </div>
+    );
+  }
+
   render() {
     return (
       <section className="section contact">
@@ -105,7 +172,11 @@ class Contact extends Component {
           services you may contact using any of the methods below.
         </p>
         <ContactOptions />
-        Or leave a message below...
+        {this.state.messageSent ? this.successNotification() : null}
+        {this.state.messageFailed ? this.errorNotification() : null}
+        {!this.state.messageFailed && !this.state.messageSent ? (
+          <div>Or leave a message below...</div>
+        ) : null}
         <ContactForm
           fields={this.state.fields}
           onInput={this.onInput.bind(this)}

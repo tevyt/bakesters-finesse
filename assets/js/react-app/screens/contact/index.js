@@ -23,8 +23,7 @@ class Contact extends Component {
         value: "",
         dirty: false,
         valid: false,
-        validator: value =>
-          value.match(/^[a-zA-Z0-9_\-.+]+@[a-zA-Z0-9_\-.+]+\.[a-zA-Z]{2,5}$/)
+        validator: validators.validateEmailAddress
       },
       phone: {
         value: "",
@@ -36,7 +35,7 @@ class Contact extends Component {
         value: "",
         dirty: false,
         valid: false,
-        validator: value => value.length >= 5
+        validator: value => value.length
       }
     };
 

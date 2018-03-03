@@ -9,3 +9,7 @@ export function validatePhoneNumber(phoneNumber) {
 export function validateName(name) {
   return name.match(/^[A-z\s'\.\-,]{1,40}$/); //eslint-disable-line
 }
+
+export function validateEmailAddress(email) {
+  return email.match(/^[a-zA-Z0-9_\-.+]+@[a-zA-Z0-9_\-.+]+\.[a-zA-Z]{2,5}$/);
+}

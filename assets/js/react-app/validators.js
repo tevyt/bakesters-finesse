@@ -7,5 +7,5 @@ export function validatePhoneNumber(phoneNumber) {
 }
 
 export function validateName(name) {
-  return name.match(/^[A-z\s'\.\-,]{1,40}$/);
+  return name.match(/^[A-z\s'\.\-,]{1,40}$/); //eslint-disable-line
 }

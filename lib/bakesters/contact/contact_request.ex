@@ -12,11 +12,12 @@ defmodule Bakesters.ContactRequest do
   @required_fields [:name, :email, :phone, :message]
 
   def changeset(model, params \\ %{}) do
-    import Bakesters.Validators, only: [validate_phone_number: 2]
+    import Bakesters.Validators
 
     model
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
+    |> validate_name(:name)
     |> validate_phone_number(:phone)
     |> validate_format(:email, ~r/@/)
   end

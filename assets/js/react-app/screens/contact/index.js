@@ -7,6 +7,7 @@ import {
   SuccessNotification,
   ErrorNotification
 } from "../../components/notifications";
+import * as validators from "../../validators";
 
 class Contact extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Contact extends Component {
         value: "",
         dirty: false,
         valid: false,
-        validator: value => value.length > 0
+        validator: validators.validatePhoneNumber
       },
       message: {
         value: "",
@@ -70,13 +71,16 @@ class Contact extends Component {
   }
 
   dirtyField(fieldName) {
+    const field = this.state.fields[fieldName];
     this.setState({
       ...this.state,
       fields: {
         ...this.state.fields,
         [fieldName]: {
-          ...this.state.fields[fieldName],
-          dirty: true
+          ...field,
+          value: field.value.trim(),
+          dirty: true,
+          valid: field.validator(field.value.trim())
         }
       }
     });

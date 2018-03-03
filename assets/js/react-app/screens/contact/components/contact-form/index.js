@@ -56,6 +56,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
           <input
             className={inputClass("input", "phone")}
             type="tel"
+            value={fields.phone.value}
             placeholder="Your Phone Number"
             onInput={onInput("phone")}
             onBlur={() => onBlur("phone")}
@@ -74,6 +75,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
           <textarea
             className={inputClass("textarea", "message")}
             placeholder="Leave a message"
+            value={fields.message.value}
             onInput={onInput("message")}
             onBlur={() => onBlur("message")}
           />

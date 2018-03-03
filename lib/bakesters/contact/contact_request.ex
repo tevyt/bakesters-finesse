@@ -17,8 +17,8 @@ defmodule Bakesters.ContactRequest do
     model
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
-    |> validate_name(:name)
+    |> validate_format(:name, ~r/^[A-z\s'\.\-,]{1,40}$/)
+    |> validate_format(:email, ~r/^[a-zA-Z0-9_\-.+]+@[a-zA-Z0-9_\-.+]+\.[a-zA-Z]{2,5}$/)
     |> validate_phone_number(:phone)
-    |> validate_format(:email, ~r/@/)
   end
 end

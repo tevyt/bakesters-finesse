@@ -17,7 +17,7 @@ class Contact extends Component {
         value: "",
         dirty: false,
         valid: false,
-        validator: value => value.length > 0
+        validator: validators.validateName
       },
       email: {
         value: "",

@@ -28,7 +28,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
           />
         </div>
         {isFieldInError("name") ? (
-          <p className="help is-danger">Enter your name.</p>
+          <p className="help is-danger">Enter a valid name.</p>
         ) : null}
       </div>
       <div className="field">
@@ -47,7 +47,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
           </span>
         </div>
         {isFieldInError("email") ? (
-          <p className="help is-danger">Email is invalid.</p>
+          <p className="help is-danger">Enter a valid email address</p>
         ) : null}
       </div>
       <div className="field">
@@ -66,7 +66,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
           </span>
         </div>
         {isFieldInError("phone") ? (
-          <p className="help is-danger">Phone number is invalid.</p>
+          <p className="help is-danger">Enter a valid phone number</p>
         ) : null}
       </div>
       <div className="field">

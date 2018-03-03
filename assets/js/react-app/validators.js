@@ -3,11 +3,9 @@ export function validatePhoneNumber(phoneNumber) {
   const numberOfDigits = phoneNumber.split("").filter(n => n.match(/^\d$/))
     .length;
 
-  console.log(
-    "Contains only valid: ",
-    containsOnlyValidCharacters,
-    " Number of digits: ",
-    numberOfDigits
-  );
   return containsOnlyValidCharacters && numberOfDigits <= 15;
+}
+
+export function validateName(name) {
+  return name.match(/^[A-z\s'\.\-,]{1,40}$/);
 }

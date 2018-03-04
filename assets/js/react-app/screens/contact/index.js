@@ -42,7 +42,9 @@ class Contact extends Component {
     this.intitialState = {
       fields,
       messageSent: false,
-      messageFailed: false
+      messageFailed: false,
+      sending: false,
+      loadProgress: 0
     };
 
     this.state = this.intitialState;
@@ -100,7 +102,8 @@ class Contact extends Component {
       this.setState({
         ...this.intitialState,
         messageSent: true,
-        messageFailed: false
+        messageFailed: false,
+        sending: false
       });
     };
 
@@ -108,7 +111,17 @@ class Contact extends Component {
       this.setState({
         ...this.state,
         messageSent: false,
-        messageFailed: true
+        messageFailed: true,
+        sending: false
+      });
+    };
+
+    const incrementLoadingProgress = () => {
+      this.setState(previousState => {
+        return {
+          ...previousState,
+          loadProgress: previousState.loadProgress + 30
+        };
       });
     };
 
@@ -120,10 +133,17 @@ class Contact extends Component {
       message: fields.message.value
     };
 
+    this.setState({
+      ...this.state,
+      sending: true
+    });
+
+    const loadingIntervalId = setInterval(incrementLoadingProgress, 500);
     return axios
       .post("/api/contact", requestBody)
       .then(successCallBack)
-      .catch(errorCallBack);
+      .catch(errorCallBack)
+      .finally(() => clearInterval(loadingIntervalId));
   }
 
   dirtyAllFields() {
@@ -159,18 +179,20 @@ class Contact extends Component {
           services you may contact using any of the methods below.
         </p>
         <ContactOptions />
-        {this.state.messageSent ? (
+        {this.state.messageSent && !this.state.sending ? (
           <SuccessNotification>
             Message sent. We will contact you shortly.
           </SuccessNotification>
         ) : null}
-        {this.state.messageFailed ? (
+        {this.state.messageFailed && !this.state.sending ? (
           <ErrorNotification>
             Sorry, were unable to send the message at this time. Please try
             again later
           </ErrorNotification>
         ) : null}
-        {!this.state.messageFailed && !this.state.messageSent ? (
+        {!this.state.messageFailed &&
+        !this.state.messageSent &&
+        !this.state.sending ? (
           <div>Or leave a message below...</div>
         ) : null}
         <ContactForm
@@ -178,6 +200,8 @@ class Contact extends Component {
           onInput={this.onInput.bind(this)}
           onBlur={this.dirtyField.bind(this)}
           onSubmit={this.submitForm.bind(this)}
+          sending={this.state.sending}
+          loadProgress={this.state.loadProgress}
         />
       </section>
     );

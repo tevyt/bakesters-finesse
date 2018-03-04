@@ -3,7 +3,14 @@ import EmailIcon from "mdi-react/EmailIcon";
 import PhoneInTalkIcon from "mdi-react/PhoneInTalkIcon";
 import PropTypes from "prop-types";
 
-function ContactForm({ onInput, onBlur, onSubmit, fields }) {
+function ContactForm({
+  onInput,
+  onBlur,
+  onSubmit,
+  fields,
+  sending,
+  loadProgress = 0
+}) {
   const isFieldInError = fieldName => {
     const field = fields[fieldName];
     return field.dirty && !field.valid;
@@ -15,6 +22,13 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
 
   return (
     <form className="contact-form" onSubmit={onSubmit}>
+      {sending ? (
+        <progress
+          className="progress is-primary"
+          value={loadProgress}
+          max="100"
+        />
+      ) : null}
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
@@ -25,6 +39,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
             value={fields.name.value}
             onInput={onInput("name")}
             onBlur={() => onBlur("name")}
+            disabled={sending}
           />
         </div>
         {isFieldInError("name") ? (
@@ -41,6 +56,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
             value={fields.email.value}
             onInput={onInput("email")}
             onBlur={() => onBlur("email")}
+            disabled={sending}
           />
           <span className="icon is-small is-left">
             <EmailIcon />
@@ -60,6 +76,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
             placeholder="Your Phone Number"
             onInput={onInput("phone")}
             onBlur={() => onBlur("phone")}
+            disabled={sending}
           />
           <span className="icon is-small is-left">
             <PhoneInTalkIcon />
@@ -78,6 +95,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
             value={fields.message.value}
             onInput={onInput("message")}
             onBlur={() => onBlur("message")}
+            disabled={sending}
           />
         </div>
         {isFieldInError("message") ? (
@@ -86,7 +104,7 @@ function ContactForm({ onInput, onBlur, onSubmit, fields }) {
       </div>
       <div className="field">
         <div className="control">
-          <button type="submit" className="button is-link">
+          <button type="submit" className="button is-link" disabled={sending}>
             Send
           </button>
         </div>
@@ -99,7 +117,9 @@ ContactForm.propTypes = {
   onInput: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  fields: PropTypes.object.isRequired
+  fields: PropTypes.object.isRequired,
+  sending: PropTypes.bool,
+  loadProgress: PropTypes.number
 };
 
 export default ContactForm;

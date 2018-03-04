@@ -56,3 +56,6 @@ config :bakesters, Bakesters.Repo,
   database: System.get_env("BAKESTERS_DB"),
   hostname: System.get_env("POSTGRES_DB_HOST"),
   pool_size: String.to_integer(System.get_env("BAKESTERS_DB_POOL_SIZE") || "10")
+
+config :bakesters, 
+recipient_email: "travis.alexander.smith.ja@gmail.com"

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "mdi": "^2.1.19",
     "mdi-react": "^2.1.19",
     "node-sass": "^4.7.2",
@@ -23,6 +24,7 @@
     "babel-brunch": "^6.1.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "brunch": "^2.10.12",

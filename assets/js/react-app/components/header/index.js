@@ -6,6 +6,7 @@ import EmailOutlineIcon from "mdi-react/EmailOutlineIcon";
 import { Link } from "react-router-dom";
 
 import Navbar from "./components/navbar";
+import CircleIcon from "../circle-icon";
 
 function Header({ isNavbarActive, onNavBurgerClick, onNavLinkClick }) {
   return (
@@ -16,19 +17,21 @@ function Header({ isNavbarActive, onNavBurgerClick, onNavLinkClick }) {
         onNavLinkClick={onNavLinkClick}
       />
       <div className="social-media-links">
-        <a
-          className="social-media-link icon is-medium"
+        <CircleIcon
+          otherclasses="social-media-link"
+          tag="a"
           href="https://www.instagram.com/bakestersfinesse/"
         >
           <InstagramIcon />
-        </a>
-        <a
-          className="social-media-link icon is-medium"
+        </CircleIcon>
+        <CircleIcon
+          otherclasses="social-media-link"
+          tag="a"
           href="https://www.facebook.com/Bakestersfinesse/"
         >
           <FacebookIcon />
-        </a>
-        <Link className="social-media-link icon is-medium" to="/contact">
+        </CircleIcon>
+        <Link className="social-media-link icon circle is-medium" to="/contact">
           <EmailOutlineIcon />
         </Link>
       </div>

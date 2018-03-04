@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./components/header";
 import Home from "./screens/home";
+import Contact from "./screens/contact";
 import Gallery from "./screens/gallery";
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/gallery" component={Gallery} />
+            <Route path="/contact" component={Contact} />
           </Switch>
         </div>
       </Router>

@@ -13,4 +13,10 @@
 html {
   font-size: 16px;
   background-color: $color-background;
+  .section {
+    color: $color-primary;
+    .title {
+      color: $color-primary;
+    }
+  }
 }

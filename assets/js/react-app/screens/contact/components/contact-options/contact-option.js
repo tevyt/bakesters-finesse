@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import CircleIcon from "../../../../components/circle-icon";
 
-function ContactOption({ href, text, Icon }) {
+function ContactOption({href, text, Icon}) {
   return (
     <div className="contact-option">
       <CircleIcon tag="div">
@@ -17,7 +17,7 @@ function ContactOption({ href, text, Icon }) {
 ContactOption.propTypes = {
   href: PropTypes.string,
   text: PropTypes.string,
-  Icon: PropTypes.func.isRequired
+  Icon: PropTypes.func.isRequired,
 };
 
 export default ContactOption;

@@ -1,4 +1,4 @@
-@import "../base/pallete.scss";
+@import '../base/pallete.scss';
 .contact {
   .contact-options {
     margin-bottom: 20px;
@@ -17,6 +17,17 @@
       .icon {
         background-color: $color-active;
         margin-right: 10px;
+      }
+    }
+  }
+  &-form {
+    .field {
+      .label.required {
+        &::after {
+          content: ' * ';
+          color: red;
+          font-size: 0.9em;
+        }
       }
     }
   }

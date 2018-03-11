@@ -1,3 +1,13 @@
+@import '../base/pallete.scss';
+
 .icon.circle {
   border-radius: 50%;
+  background-color: $color-active;
+  margin: 5px;
+  svg {
+    fill: white;
+  }
+  &:hover {
+    background-color: $color-green-dark;
+  }
 }

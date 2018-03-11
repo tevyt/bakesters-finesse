@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import axios from "axios";
 
 import ContactOptions from "./components/contact-options";
 import ContactForm from "./components/contact-form";
 import {
   SuccessNotification,
-  ErrorNotification
+  ErrorNotification,
 } from "../../components/notifications";
 import * as validators from "../../validators";
 
@@ -17,26 +17,30 @@ class Contact extends Component {
         value: "",
         dirty: false,
         valid: false,
-        validator: validators.validateName
+        required: true,
+        validator: validators.validateName,
       },
       email: {
         value: "",
         dirty: false,
         valid: false,
-        validator: validators.validateEmailAddress
+        required: true,
+        validator: validators.validateEmailAddress,
       },
       phone: {
         value: "",
         dirty: false,
-        valid: false,
-        validator: validators.validatePhoneNumber
+        valid: true,
+        required: false,
+        validator: validators.validatePhoneNumber,
       },
       message: {
         value: "",
         dirty: false,
         valid: false,
-        validator: value => value.length
-      }
+        required: true,
+        validator: value => value.length,
+      },
     };
 
     this.intitialState = {
@@ -44,7 +48,7 @@ class Contact extends Component {
       messageSent: false,
       messageFailed: false,
       sending: false,
-      loadProgress: 0
+      loadProgress: 0,
     };
 
     this.state = this.intitialState;
@@ -52,7 +56,8 @@ class Contact extends Component {
 
   onInput(fieldName) {
     const inputFunction = event => {
-      const validator = this.state.fields[fieldName].validator;
+      const {validator, required} = this.state.fields[fieldName];
+      const value = event.target.value.trim();
       this.setState({
         ...this.state,
         messageSent: false,
@@ -61,14 +66,22 @@ class Contact extends Component {
           ...this.state.fields,
           [fieldName]: {
             ...this.state.fields[fieldName],
-            value: event.target.value,
-            valid: validator(event.target.value)
-          }
-        }
+            value,
+            valid: this.isFieldValid({validator, value, required}),
+          },
+        },
       });
     };
 
     return inputFunction.bind(this);
+  }
+
+  isFieldValid({value, required, validator}) {
+    if (!required && !value) {
+      return true;
+    } else {
+      return validator(value.trim());
+    }
   }
 
   dirtyField(fieldName) {
@@ -81,9 +94,9 @@ class Contact extends Component {
           ...field,
           value: field.value.trim(),
           dirty: true,
-          valid: field.validator(field.value.trim())
-        }
-      }
+          valid: this.isFieldValid(this.state.fields[fieldName]),
+        },
+      },
     });
   }
 
@@ -103,7 +116,7 @@ class Contact extends Component {
         ...this.intitialState,
         messageSent: true,
         messageFailed: false,
-        sending: false
+        sending: false,
       });
     };
 
@@ -112,7 +125,7 @@ class Contact extends Component {
         ...this.state,
         messageSent: false,
         messageFailed: true,
-        sending: false
+        sending: false,
       });
     };
 
@@ -120,7 +133,7 @@ class Contact extends Component {
       this.setState(previousState => {
         return {
           ...previousState,
-          loadProgress: previousState.loadProgress + 30
+          loadProgress: previousState.loadProgress + 30,
         };
       });
     };
@@ -130,12 +143,12 @@ class Contact extends Component {
       name: fields.name.value,
       phone: fields.phone.value,
       email: fields.email.value,
-      message: fields.message.value
+      message: fields.message.value,
     };
 
     this.setState({
       ...this.state,
-      sending: true
+      sending: true,
     });
 
     const loadingIntervalId = setInterval(incrementLoadingProgress, 500);
@@ -155,13 +168,13 @@ class Contact extends Component {
       fieldName =>
         (dirtiedFields[fieldName] = {
           ...this.state.fields[fieldName],
-          dirty: true
-        })
+          dirty: true,
+        }),
     );
 
     this.setState({
       ...this.state,
-      fields: dirtiedFields
+      fields: dirtiedFields,
     });
   }
 

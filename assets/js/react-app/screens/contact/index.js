@@ -1,42 +1,46 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, {Component} from 'react';
+import axios from 'axios';
 
-import ContactOptions from "./components/contact-options";
-import ContactForm from "./components/contact-form";
+import ContactOptions from './components/contact-options';
+import ContactForm from './components/contact-form';
 import {
   SuccessNotification,
-  ErrorNotification
-} from "../../components/notifications";
-import * as validators from "../../validators";
+  ErrorNotification,
+} from '../../components/notifications';
+import * as validators from '../../validators';
 
 class Contact extends Component {
   constructor(props) {
     super(props);
     const fields = {
       name: {
-        value: "",
+        value: '',
         dirty: false,
         valid: false,
-        validator: validators.validateName
+        required: true,
+        validator: validators.validateName,
       },
       email: {
-        value: "",
+        value: '',
         dirty: false,
         valid: false,
-        validator: validators.validateEmailAddress
+        required: true,
+        validator: validators.validateEmailAddress,
       },
       phone: {
-        value: "",
+        value: '',
         dirty: false,
         valid: false,
-        validator: validators.validatePhoneNumber
+        required: false,
+        validator: validators.validatePhoneNumber,
       },
       message: {
-        value: "",
+        value: '',
         dirty: false,
         valid: false,
-        validator: value => value.length
-      }
+        required: true,
+        validator: value => value.length,
+      },
     };
 
     this.intitialState = {
@@ -44,7 +48,7 @@ class Contact extends Component {
       messageSent: false,
       messageFailed: false,
       sending: false,
-      loadProgress: 0
+      loadProgress: 0,
     };
 
     this.state = this.intitialState;
@@ -62,9 +66,9 @@ class Contact extends Component {
           [fieldName]: {
             ...this.state.fields[fieldName],
             value: event.target.value,
-            valid: validator(event.target.value)
-          }
-        }
+            valid: validator(event.target.value),
+          },
+        },
       });
     };
 
@@ -81,9 +85,9 @@ class Contact extends Component {
           ...field,
           value: field.value.trim(),
           dirty: true,
-          valid: field.validator(field.value.trim())
-        }
-      }
+          valid: field.validator(field.value.trim()),
+        },
+      },
     });
   }
 
@@ -103,7 +107,7 @@ class Contact extends Component {
         ...this.intitialState,
         messageSent: true,
         messageFailed: false,
-        sending: false
+        sending: false,
       });
     };
 
@@ -112,7 +116,7 @@ class Contact extends Component {
         ...this.state,
         messageSent: false,
         messageFailed: true,
-        sending: false
+        sending: false,
       });
     };
 
@@ -120,7 +124,7 @@ class Contact extends Component {
       this.setState(previousState => {
         return {
           ...previousState,
-          loadProgress: previousState.loadProgress + 30
+          loadProgress: previousState.loadProgress + 30,
         };
       });
     };
@@ -130,17 +134,17 @@ class Contact extends Component {
       name: fields.name.value,
       phone: fields.phone.value,
       email: fields.email.value,
-      message: fields.message.value
+      message: fields.message.value,
     };
 
     this.setState({
       ...this.state,
-      sending: true
+      sending: true,
     });
 
     const loadingIntervalId = setInterval(incrementLoadingProgress, 500);
     return axios
-      .post("/api/contact", requestBody)
+      .post('/api/contact', requestBody)
       .then(successCallBack)
       .catch(errorCallBack)
       .finally(() => clearInterval(loadingIntervalId));
@@ -155,13 +159,13 @@ class Contact extends Component {
       fieldName =>
         (dirtiedFields[fieldName] = {
           ...this.state.fields[fieldName],
-          dirty: true
-        })
+          dirty: true,
+        }),
     );
 
     this.setState({
       ...this.state,
-      fields: dirtiedFields
+      fields: dirtiedFields,
     });
   }
 

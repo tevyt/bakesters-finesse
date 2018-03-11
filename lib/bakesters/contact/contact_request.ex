@@ -9,7 +9,8 @@ defmodule Bakesters.ContactRequest do
     field(:message, :string)
   end
 
-  @required_fields [:name, :email, :phone, :message]
+  @required_fields [:name, :email, :message]
+
 
   def changeset(model, params \\ %{}) do
     import Bakesters.Validators

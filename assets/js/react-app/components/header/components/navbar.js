@@ -1,14 +1,13 @@
 import React from "react"; //eslint-disable-line
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-function Navbar({ isActive, onBurgerClick, onNavLinkClick }) {
+function Navbar({isActive, onBurgerClick, onNavLinkClick}) {
   return (
     <nav
       className="navbar is-transparent"
       role="navigation"
-      aria-label="main navigation"
-    >
+      aria-label="main navigation">
       <NavbarBrand
         isActive={isActive}
         onBurgerClick={onBurgerClick}
@@ -21,9 +20,6 @@ function Navbar({ isActive, onBurgerClick, onNavLinkClick }) {
         <Link className="navbar-item" to="/about">
           About
         </Link>
-        <Link className="navbar-item" to="/gallery">
-          Gallery
-        </Link>
         <Link className="navbar-item" to="/contact">
           Contact
         </Link>
@@ -32,7 +28,7 @@ function Navbar({ isActive, onBurgerClick, onNavLinkClick }) {
   );
 }
 
-function NavbarBrand({ isActive, onBurgerClick, onHomeLinkClick }) {
+function NavbarBrand({isActive, onBurgerClick, onHomeLinkClick}) {
   return (
     <div className="navbar-brand">
       <Link className="navbar-item" to="/" onClick={onHomeLinkClick}>
@@ -41,8 +37,7 @@ function NavbarBrand({ isActive, onBurgerClick, onHomeLinkClick }) {
 
       <div
         className={`navbar-burger ${getIsActiveClassName(isActive)}`}
-        onClick={onBurgerClick}
-      >
+        onClick={onBurgerClick}>
         <span />
         <span />
         <span />
@@ -51,9 +46,9 @@ function NavbarBrand({ isActive, onBurgerClick, onHomeLinkClick }) {
   );
 }
 
-function NavbarMenu({ children, isActive, onNavLinkClick }) {
+function NavbarMenu({children, isActive, onNavLinkClick}) {
   const linksWithOnClick = React.Children.map(children, child =>
-    React.cloneElement(child, { onClick: onNavLinkClick })
+    React.cloneElement(child, {onClick: onNavLinkClick}),
   );
   return (
     <div className={`navbar-menu ${getIsActiveClassName(isActive)}`}>
@@ -73,22 +68,22 @@ function getIsActiveClassName(isActive) {
 Navbar.propTypes = {
   isActive: PropTypes.bool,
   onBurgerClick: PropTypes.func.isRequired,
-  onNavLinkClick: PropTypes.func.isRequired
+  onNavLinkClick: PropTypes.func.isRequired,
 };
 
 NavbarBrand.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onBurgerClick: PropTypes.func.isRequired,
-  onHomeLinkClick: PropTypes.func
+  onHomeLinkClick: PropTypes.func,
 };
 
 NavbarMenu.propTypes = {
   isActive: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element
+    PropTypes.element,
   ]),
-  onNavLinkClick: PropTypes.func.isRequired
+  onNavLinkClick: PropTypes.func.isRequired,
 };
 
 export default Navbar;

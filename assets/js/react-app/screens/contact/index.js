@@ -1,41 +1,41 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, {Component} from "react";
+import axios from "axios";
 
-import ContactOptions from './components/contact-options';
-import ContactForm from './components/contact-form';
+import ContactOptions from "./components/contact-options";
+import ContactForm from "./components/contact-form";
 import {
   SuccessNotification,
   ErrorNotification,
-} from '../../components/notifications';
-import * as validators from '../../validators';
+} from "../../components/notifications";
+import * as validators from "../../validators";
 
 class Contact extends Component {
   constructor(props) {
     super(props);
     const fields = {
       name: {
-        value: '',
+        value: "",
         dirty: false,
         valid: false,
         required: true,
         validator: validators.validateName,
       },
       email: {
-        value: '',
+        value: "",
         dirty: false,
         valid: false,
         required: true,
         validator: validators.validateEmailAddress,
       },
       phone: {
-        value: '',
+        value: "",
         dirty: false,
         valid: true,
         required: false,
         validator: validators.validatePhoneNumber,
       },
       message: {
-        value: '',
+        value: "",
         dirty: false,
         valid: false,
         required: true,
@@ -153,7 +153,7 @@ class Contact extends Component {
 
     const loadingIntervalId = setInterval(incrementLoadingProgress, 500);
     return axios
-      .post('/api/contact', requestBody)
+      .post("/api/contact", requestBody)
       .then(successCallBack)
       .catch(errorCallBack)
       .finally(() => clearInterval(loadingIntervalId));

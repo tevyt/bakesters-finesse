@@ -111,6 +111,9 @@ function ContactForm({
           </button>
         </div>
       </div>
+      <div className="legend">
+        <span className="legend-symbol">*</span> indicates mandatory fields.
+      </div>
     </form>
   );
 }

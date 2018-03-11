@@ -8,7 +8,7 @@ function FieldLabel({fieldName, required}) {
 }
 
 FieldLabel.propTypes = {
-  fieldName: PropTypes.string.required,
+  fieldName: PropTypes.string.isRequired,
   required: PropTypes.bool,
 };
 

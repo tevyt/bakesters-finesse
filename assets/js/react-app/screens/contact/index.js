@@ -30,7 +30,7 @@ class Contact extends Component {
       phone: {
         value: '',
         dirty: false,
-        valid: false,
+        valid: true,
         required: false,
         validator: validators.validatePhoneNumber,
       },
@@ -56,7 +56,8 @@ class Contact extends Component {
 
   onInput(fieldName) {
     const inputFunction = event => {
-      const validator = this.state.fields[fieldName].validator;
+      const {validator, required} = this.state.fields[fieldName];
+      const value = event.target.value.trim();
       this.setState({
         ...this.state,
         messageSent: false,
@@ -65,14 +66,22 @@ class Contact extends Component {
           ...this.state.fields,
           [fieldName]: {
             ...this.state.fields[fieldName],
-            value: event.target.value,
-            valid: validator(event.target.value),
+            value,
+            valid: this.isFieldValid({validator, value, required}),
           },
         },
       });
     };
 
     return inputFunction.bind(this);
+  }
+
+  isFieldValid({value, required, validator}) {
+    if (!required && !value) {
+      return true;
+    } else {
+      return validator(value.trim());
+    }
   }
 
   dirtyField(fieldName) {
@@ -85,7 +94,7 @@ class Contact extends Component {
           ...field,
           value: field.value.trim(),
           dirty: true,
-          valid: field.validator(field.value.trim()),
+          valid: this.isFieldValid(this.state.fields[fieldName]),
         },
       },
     });

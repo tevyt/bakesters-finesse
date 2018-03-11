@@ -9,16 +9,16 @@ services:
 script:
 - mix test
 - npm --prefix ./assets install ./assets
-
 after_deploy:
-  - wget -q0- https://toolbelt.heroku.com/install.sh | sh
-  - heroku run "POOL_SIZE=2 mix do ecto.create ecto.migrate" --app $HEROKU_APP_NAME
-  - heroku ps:restart --app $HEROKU_APP_NAME
-
+- wget -q0- https://toolbelt.heroku.com/install.sh | sh
+- heroku run "POOL_SIZE=2 mix do ecto.create ecto.migrate" --app $HEROKU_APP_NAME
+- heroku ps:restart --app $HEROKU_APP_NAME
 deploy:
   provider: heroku
   api_key:
-    secure: sUWvP++vZOC9x/JTsSjET+qud+dHGsVFktYalxn4vnX8PE3b1ktydBsmZtX5BRgIgjBhjsn92Tr3ynYvxBUZpoQpxGP7X5+IpJ1JuRllmIK18EwH+IB5bIT2cnwYStbdFLQNgYsO4uJkdYYcSRKY/ZZU3gIUz8dTbP3DbEGJoDn9zQXFX29OJdpGcEKdaUsPIcmVX9CjhEF44hPGDVDNPghgSDnDkSmQOThtS0vhVcQ7BhuYigwxo/w0NAtuMbYxpppKPzdr4K7iVI1pJ1U4IhN6W6bpOMrIESB5pWe2IWil7mNrNXQdTOnpojcZA990xeRdMi6Z1vPzs+C5yJ5QaQ1vtqKB/o88x1kPcCBxwGJy1BBYYu7OpKH3rPc7hBI/ucPuiwp2C7Kw5Hd/j62KeRwLDo+qqclUpN48r0MYnPPjifD7/N75TEGuvnAbuPXlKF1IQOdFCVYx+V3lVFqH+IGz0PJkx6v4r7MY/R626OgXHNS9ZYiYVZrJYUmnW2nRr4wILiaVHUAo4ibIQGDvzYJyZrwgsqbV3NXfa88ZkuIW2gFw/DXJ3zQVXVvtDoxoqn2GuTTqati+TEpQ2dA2RcST8Js8q+LM+tcw3ItFBIhlaSz61gO5Ybs7I47r6RzitLAEky5IUxX+SikbA3n/dPO0q4fz/vva/G4X2wY7whY=
+    secure: W1L0jUxF5C7AKksiE/Y+6zMuylyC19dINNWqCpZS5mn7LPR3RiQdypnIxVdBPa8uKlDAmpw/DqOtqA7uLnw8vA2zKqaNKkcn/GLlo5OqIaVL7iE+cc3QBHk7EHo/FudSk+Z+R2+WQjBfFT8ofi8Wvg9QEqRVmA0pGS5YfO88rlFNL/EBY7P8UzpMiSi02b3FrtO/miZP0bBM+Uqr2+q1cbR1q5vl20DHti1IorK5ET+ZgKOb+BU7gxG0UB68AeTHvDTft4IMW8A9FZK/KlbUFmT0+OQUrtYe+oN93vwacPejQc9B1Q4ijjMZbvKwTDvswDFxLqxiv78YAg1oCIIfMJAmpldsSLcDBY532ntE7EstFx++WahiewVjJH4HgrF6uEYm1Ou6dT15ph3QrpQWsJxkkLog/yd9nMLr4rVmHYgpnjDlbXFcDBuJHqugjNiylU/Sf91/FjN1AUo9jCgmQkcLPX3ueo8vUHFJH71S/iLQY5YON8o8LITZ4CVnHa+16BNzJLeeE7rWwuogHho3NDBFYoy/NSRpm1uYv8glIDRYw4egkODmQwp9/5a4K0VccalREyKLp9soeVxzF5pQ6anCsstKEkEhF50M8wjANFi8V/3f+Z5RNICWy5uMtN9Ulhr0jbJvuzPR1x7oCE1JvF1HXLsn4lIFYInupX0P3us=
   app: bakesters-finesse
   on:
+    repo: tevyt/bakesters-finesse
     branch: master
+

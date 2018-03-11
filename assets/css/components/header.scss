@@ -1,4 +1,4 @@
-@import "../base/pallete.scss";
+@import '../base/pallete.scss';
 
 .header {
   .navbar {
@@ -23,15 +23,5 @@
   .social-media-links {
     display: flex;
     justify-content: flex-end;
-    .social-media-link {
-      background-color: $color-active;
-      margin: 5px;
-      svg {
-        fill: white;
-      }
-      &:hover {
-        background-color: $color-green-dark;
-      }
-    }
   }
 }

@@ -15,8 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :bakesters, BakestersWeb.Endpoint,
   load_from_system_env: true,
-  url: [scheme: "https", host: "bakestersfinesse.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  url: [scheme: "http", host: "bakestersfinesse.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 

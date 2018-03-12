@@ -18,7 +18,7 @@ deploy:
   api_key:
     secure: "klZC3j7KgJPCfdzcBobeclOM1JvpkDMJmgl+oMiKTIPKTIguiGK6ebHDjjphfJEbUq+21Zr9KQ3qvJlv9AXn08GsKZUyMwykf6pPQG5FR6ILUawaFWB7OnWRGq1nx/q1cTr02KuMFonQ/dt4Bwtb2Q3lob1+BBQ1lL8gFOZFNEt0ztlMWQDU3/4HCPf7O0iQl2XC22RwD7+azyE8B0M6JceS4jdMb3UYKMuU0Ar1/cRx8pN0uOq3wCUNbZrp25WBxhgsdj+aW6hhgxSxSbosXOrMaZFcX5+11Fo+xRiuEn7D3DCAomy7Om/d7XnVaeZORPPm6RFotGnHAFcrMAAm79T6sb64caSnAH+tlJp/FvZMYmYmD1WIy1R41j/bWoOYnFNizS6XmebdOo1YV3aSISm4Ipgt7U4zYBCzlL/+A+BHbAUI3GkBb5k4HVEMlg5/DJa6vKH4Cuh38rBiuTmPqSK3/NE6gk5LCI1WitkP73rGl/c5q34/7sjQ+dLhXGDtZ9CHKH+3mQ8Ea7MF3lDio8Djup4SPPX2YRbTILqU5hwKrWB/Oa+rEPatvHiUpHvD8swD67islih9c8c2PQ0hLIo5cD3RHkenEbEGTnjMHKAYpF1+JwfTaSwCaZKOf2cKT5s56oZoe41LhPv7RlyD7tpi7B2l1XQrXwTt1yUidXk="
 
-  app: bakesters-finesse
+  app: bakestersfinesse
   on:
     repo: tevyt/bakesters-finesse
     branch: master

@@ -1,5 +1,7 @@
 import React from "react"; //eslint-disable-line
 
+import Logo from "../components/logo";
+
 function Home() {
   return (
     <section className="home section">
@@ -50,9 +52,7 @@ function Home() {
             </div>
           </div>
           <div className="tile">
-            <figure className="tile is-child image is-3by2">
-              <img src="https://res.cloudinary.com/dv8aqe8lm/image/upload/c_scale,w_1280/v1513737624/logo_hmncq7.png" />
-            </figure>
+            <Logo className="tile is-child image is-3by2" />
           </div>
         </div>
       </div>

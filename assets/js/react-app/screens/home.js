@@ -52,7 +52,9 @@ function Home() {
             </div>
           </div>
           <div className="tile">
-            <Logo className="tile is-child image is-3by2" />
+            <figure className="tile is-child image is-3by2">
+              <Logo />
+            </figure>
           </div>
         </div>
       </div>
